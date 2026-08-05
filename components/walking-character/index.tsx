@@ -4,23 +4,27 @@ import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * 인터랙티브 캐릭터
- * - 스크롤: 영상처럼 부드러운 시간 기반 걷기 (아래=walk 시트, 위=back 시트)
- * - 멈추면: 사이클 완결 후 idle — 마우스 방향을 9방향 시선(gaze 시트)으로 따라봄
- * - gaze 시트가 없으면 걷기 0프레임으로 idle
+ * 인터랙티브 캐릭터 — 우선순위: 걷기 > 마우스 시선 > 날개 펄럭임 idle
+ * - 스크롤: 시간 기반 걷기 재생 (아래=walk, 위=back)
+ * - 멈춘 뒤 마우스가 움직이면: 9방향 시선(gaze)으로 커서를 따라봄
+ * - 마우스도 잠잠하면: 6프레임 날개 펄럭임(idle 시트) + 둥실 부유
  */
-const FRAME_COUNT = 8;
-const FRAME_MS = 80; // 걷기 재생 속도 (~12.5fps)
+const WALK_FRAMES = 8;
+const IDLE_FRAMES = 6;
+const FRAME_MS = 80; // 걷기 재생 (~12.5fps)
+const IDLE_FRAME_MS = 150; // 펄럭임 재생
 const STOP_AFTER_MS = 200;
-const GAZE_DEADZONE = 70; // px — 이 안쪽이면 정면
-const GAZE_THROTTLE_MS = 100; // 시선 갱신 최소 간격 (두리번거림 방지)
+const GAZE_DEADZONE = 70;
+const GAZE_THROTTLE_MS = 100;
+const GAZE_HOLD_MS = 2000; // 마우스 멈춘 뒤 시선 유지 시간
 
 type Sheet = "walk" | "back";
 
 const walkSrc = (sheet: Sheet, i: number) =>
   `/images/character/${sheet}-${i}.webp`;
-// gaze 인덱스: 0 좌상 1 상 2 우상 / 3 좌 4 정면 5 우 / 6 좌하 7 하 8 우하
+// gaze: 0 좌상 1 상 2 우상 / 3 좌 4 정면 5 우 / 6 좌하 7 하 8 우하
 const gazeSrc = (i: number) => `/images/character/gaze-${i}.webp`;
+const idleSrc = (i: number) => `/images/character/idle-${i}.webp`;
 
 const preload = (srcs: string[]) =>
   Promise.all(
@@ -40,26 +44,33 @@ const WalkingCharacter = () => {
   const [sheet, setSheet] = useState<Sheet>("walk");
   const [idle, setIdle] = useState(true);
   const [gaze, setGaze] = useState(4);
+  const [gazeActive, setGazeActive] = useState(false);
+  const [idleFrame, setIdleFrame] = useState(0);
   const [walkReady, setWalkReady] = useState(false);
   const [gazeReady, setGazeReady] = useState(false);
+  const [idleReady, setIdleReady] = useState(false);
   const dir = useRef<Sheet>("walk");
   const lastScrollAt = useRef(0);
   const lastY = useRef(0);
   const lastGazeAt = useRef(0);
+  const gazeHold = useRef<ReturnType<typeof setTimeout> | null>(null);
   const boxRef = useRef<HTMLDivElement>(null);
 
-  // 프리로드: 걷기 16프레임(필수) + 시선 9프레임(선택)
+  // 프리로드: 걷기(필수) / 시선·펄럭임(있으면 활성화)
   useEffect(() => {
     let alive = true;
     preload(
       (["walk", "back"] as const).flatMap((s) =>
-        Array.from({ length: FRAME_COUNT }, (_, i) => walkSrc(s, i)),
+        Array.from({ length: WALK_FRAMES }, (_, i) => walkSrc(s, i)),
       ),
     )
       .then(() => alive && setWalkReady(true))
       .catch(() => {});
     preload(Array.from({ length: 9 }, (_, i) => gazeSrc(i)))
       .then(() => alive && setGazeReady(true))
+      .catch(() => {});
+    preload(Array.from({ length: IDLE_FRAMES }, (_, i) => idleSrc(i)))
+      .then(() => alive && setIdleReady(true))
       .catch(() => {});
     return () => {
       alive = false;
@@ -107,7 +118,7 @@ const WalkingCharacter = () => {
       acc += dt;
       while (acc >= FRAME_MS) {
         acc -= FRAME_MS;
-        currentFrame = (currentFrame + 1) % FRAME_COUNT;
+        currentFrame = (currentFrame + 1) % WALK_FRAMES;
         if (!scrollingRecently && currentFrame === 0) break;
       }
       setFrame(currentFrame);
@@ -121,7 +132,7 @@ const WalkingCharacter = () => {
     };
   }, [walkReady]);
 
-  // 시선: 마우스 방향 → 9방향 (idle일 때만)
+  // 시선: 마우스 방향 → 9방향, 멈추면 2초 뒤 펄럭임으로 복귀
   useEffect(() => {
     if (!gazeReady) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -132,29 +143,50 @@ const WalkingCharacter = () => {
       lastGazeAt.current = now;
       const box = boxRef.current?.getBoundingClientRect();
       if (!box) return;
-      // 캐릭터 머리 근처를 시선 원점으로
       const ox = box.left + box.width / 2;
-      const oy = box.top + box.height * 0.3;
+      const oy = box.top + box.height * 0.3; // 머리 근처가 시선 원점
       const dx = e.clientX - ox;
       const dy = e.clientY - oy;
       if (reduced.matches) {
         setGaze(4);
         return;
       }
-      const col =
-        Math.abs(dx) < GAZE_DEADZONE ? 1 : dx < 0 ? 0 : 2;
-      const row =
-        Math.abs(dy) < GAZE_DEADZONE ? 1 : dy < 0 ? 0 : 2;
+      const col = Math.abs(dx) < GAZE_DEADZONE ? 1 : dx < 0 ? 0 : 2;
+      const row = Math.abs(dy) < GAZE_DEADZONE ? 1 : dy < 0 ? 0 : 2;
       setGaze(row * 3 + col);
+      setGazeActive(true);
+      if (gazeHold.current) clearTimeout(gazeHold.current);
+      gazeHold.current = setTimeout(() => setGazeActive(false), GAZE_HOLD_MS);
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (gazeHold.current) clearTimeout(gazeHold.current);
+    };
   }, [gazeReady]);
+
+  // 펄럭임 idle 재생
+  const flapping = idle && idleReady && !(gazeActive && gazeReady);
+  useEffect(() => {
+    if (!flapping) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = setInterval(
+      () => setIdleFrame((i) => (i + 1) % IDLE_FRAMES),
+      IDLE_FRAME_MS,
+    );
+    return () => clearInterval(t);
+  }, [flapping]);
 
   if (!walkReady) return null;
 
-  const showGaze = idle && gazeReady;
+  const showGaze = idle && gazeActive && gazeReady;
+  const showIdle = flapping;
+  const layer = (visible: boolean) =>
+    cn(
+      "absolute inset-x-0 bottom-0 mx-auto h-full w-auto object-contain drop-shadow-[0_6px_12px_rgba(0,0,0,0.35)]",
+      visible ? "visible" : "invisible",
+    );
 
   return (
     <div
@@ -168,18 +200,15 @@ const WalkingCharacter = () => {
       {/* 모든 프레임을 겹쳐두고 현재 것만 표시 — 교체 깜빡임 없음 */}
       <div className="relative h-40 w-32 lg:h-48 lg:w-40">
         {(["walk", "back"] as const).map((s) =>
-          Array.from({ length: FRAME_COUNT }, (_, i) => (
+          Array.from({ length: WALK_FRAMES }, (_, i) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               key={`${s}-${i}`}
               src={walkSrc(s, i)}
               alt=""
               draggable={false}
-              className={cn(
-                "absolute inset-x-0 bottom-0 mx-auto h-full w-auto object-contain drop-shadow-[0_6px_12px_rgba(0,0,0,0.35)]",
-                !showGaze && s === sheet && i === frame
-                  ? "visible"
-                  : "invisible",
+              className={layer(
+                !showGaze && !showIdle && s === sheet && i === frame,
               )}
             />
           )),
@@ -192,10 +221,18 @@ const WalkingCharacter = () => {
               src={gazeSrc(i)}
               alt=""
               draggable={false}
-              className={cn(
-                "absolute inset-x-0 bottom-0 mx-auto h-full w-auto object-contain drop-shadow-[0_6px_12px_rgba(0,0,0,0.35)]",
-                showGaze && i === gaze ? "visible" : "invisible",
-              )}
+              className={layer(showGaze && i === gaze)}
+            />
+          ))}
+        {idleReady &&
+          Array.from({ length: IDLE_FRAMES }, (_, i) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={`idle-${i}`}
+              src={idleSrc(i)}
+              alt=""
+              draggable={false}
+              className={layer(showIdle && i === idleFrame)}
             />
           ))}
       </div>
