@@ -153,6 +153,18 @@
   }
 }
 
+/* 이미지 위 텍스트 가독성 (버넥트 방식: 섀도 + 국소 스크림) */
+.hero-text-guard {
+  text-shadow: 0 1px 3px rgb(0 0 0 / 0.65);
+}
+.hero-scrim {
+  background: radial-gradient(
+    ellipse 75% 65% at 50% 50%,
+    oklch(0.16 0.015 265 / 0.55),
+    transparent 72%
+  );
+}
+
 /* 히어로 1회성 등장 모션 — 유일하게 authored된 모션 */
 @media (prefers-reduced-motion: no-preference) {
   .hero-enter {

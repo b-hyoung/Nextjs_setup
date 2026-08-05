@@ -72,7 +72,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-hero/55 via-hero/25 to-hero/65" />
       </div>
 
-      <div className="hero-enter relative mx-auto w-full max-w-[1440px] px-5 pb-16 pt-24 text-center md:py-28">
+      <div className="hero-enter hero-scrim hero-text-guard relative mx-auto w-full max-w-[1440px] px-5 pb-16 pt-24 text-center md:py-28">
         <h1 className="mx-auto text-balance text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
           {SITE.tagline}
           <br />
@@ -158,7 +158,7 @@ const Hero = () => {
       {/* 데스크톱: 캡션 + 인디케이터 */}
       {slides.length > 0 && (
         <div className="absolute inset-x-0 bottom-8 hidden flex-col items-center gap-3 md:flex">
-          <p className="text-xs font-medium text-white/70">
+          <p className="hero-text-guard text-xs font-medium text-white/70">
             {slides[safeIndex].caption}
           </p>
           {indicator()}
