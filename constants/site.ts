@@ -198,7 +198,7 @@ export const BUSINESS_AREAS = [
     images: [
       { src: "/images/gal-therapy-4.webp", alt: "밤 단풍 정원 힐링 환경" },
       { src: "/images/biz-therapy.webp", alt: "실시간 렌더링 힐링 환경 — 숲과 호수" },
-      { src: "/images/gal-therapy-2.webp", alt: "몰입형 명상 체험" },
+      { src: "/images/moments/dome-audience.webp", alt: "몰입형 상영관 관람" },
     ],
     video: "https://youtu.be/vdkhWgUaMLo",
   },
