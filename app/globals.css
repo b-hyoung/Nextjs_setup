@@ -133,6 +133,8 @@
   }
   html {
     @apply font-sans scroll-smooth;
+    /* 한국어 조판: 단어 중간 줄바꿈 방지 */
+    word-break: keep-all;
   }
   /* 브라우저 기본 표면도 브랜드 팔레트로: 셀렉션·포커스 링 */
   ::selection {
