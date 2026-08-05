@@ -176,7 +176,7 @@ export const BUSINESS_AREAS = [
       { src: "/images/gal-mediaart-2.webp", alt: "라이트 인터랙티브 룸" },
       { src: "/images/gal-mediaart-3.webp", alt: "프로젝션 시연 현장" },
     ],
-    videos: [{ url: "https://youtu.be/_TTErJ6JrLg", label: "360 몰입 영상" }],
+    videos: [],
   },
   {
     title: "XR·VR 교육 콘텐츠",
