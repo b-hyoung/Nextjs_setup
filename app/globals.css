@@ -180,6 +180,18 @@
       transform: translateY(0);
     }
   }
+  /* 시그니처 마퀴 — 두 벌 렌더링 기준 절반 이동 루프 */
+  .marquee {
+    animation: marquee-slide 28s linear infinite;
+  }
+  @keyframes marquee-slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
   /* 스크롤 마우스 휠 점 */
   .scroll-wheel {
     animation: wheel-drop 1.6s ease-in-out infinite;

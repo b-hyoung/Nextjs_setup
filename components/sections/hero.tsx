@@ -81,10 +81,6 @@ const Hero = () => {
           <br className="hidden sm:block" />
           <span className="sm:contents"> {SITE.descriptionLines[1]}</span>
         </p>
-        {/* 시그니처 — 브랜드 컬러 트래킹 캡스 (버넥트식) */}
-        <p className="mt-8 text-[11px] font-bold uppercase tracking-[0.35em] text-brand sm:text-xs md:mt-10">
-          {SITE.slogan}
-        </p>
 
         {/* 모바일: 프레임 슬라이드쇼 — 가로 사진을 자르지 않고 보여준다 */}
         {slides.length > 0 && (
