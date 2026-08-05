@@ -63,16 +63,21 @@ const Business = () => {
                 <p className="mt-4 leading-relaxed text-neutral-600">
                   {area.description}
                 </p>
-                {area.video && (
-                  <a
-                    href={area.video}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-strong hover:underline"
-                  >
-                    데모 영상 보기
-                    <ExternalLink size={14} />
-                  </a>
+                {area.videos.length > 0 && (
+                  <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+                    {area.videos.map((v) => (
+                      <a
+                        key={v.url}
+                        href={v.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-strong hover:underline"
+                      >
+                        {v.label}
+                        <ExternalLink size={14} />
+                      </a>
+                    ))}
+                  </div>
                 )}
               </div>
             </article>

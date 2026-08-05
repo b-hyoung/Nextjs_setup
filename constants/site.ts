@@ -139,7 +139,7 @@ export const CHARACTER_STICKER = {
 
 /**
  * 사업분야 6개 — §3.2 핵심 역량 + 추가 제작 영역
- * images: PPTX에서 추출한 실제 프로젝트 이미지 여러 장 / video: 소개서에 링크된 자사 유튜브 데모
+ * images: PPTX에서 추출한 실제 프로젝트 이미지 여러 장 / videos: 자사 유튜브 데모 링크
  */
 export const BUSINESS_AREAS = [
   {
@@ -152,7 +152,7 @@ export const BUSINESS_AREAS = [
       { src: "/images/gal-device-4.webp", alt: "그린스크린 스튜디오" },
       { src: "/images/gal-device-3.webp", alt: "반려견 상호작용 VR 화면" },
     ],
-    video: null,
+    videos: [{ url: "https://youtu.be/h_LZiY9hQYg", label: "반려동물 VR 데모" }],
   },
   {
     title: "디지털트윈 & AI 시뮬레이션",
@@ -164,7 +164,7 @@ export const BUSINESS_AREAS = [
       { src: "/images/gal-twin-2.webp", alt: "금선암 실제 부지 사진" },
       { src: "/images/biz-twin.webp", alt: "자연 환경 실시간 재구성" },
     ],
-    video: "https://youtu.be/vdkhWgUaMLo",
+    videos: [{ url: "https://youtu.be/vdkhWgUaMLo", label: "금선암 언리얼 데모" }],
   },
   {
     title: "몰입형 미디어아트 & 인터랙티브 전시",
@@ -176,7 +176,7 @@ export const BUSINESS_AREAS = [
       { src: "/images/gal-mediaart-2.webp", alt: "라이트 인터랙티브 룸" },
       { src: "/images/gal-mediaart-3.webp", alt: "프로젝션 시연 현장" },
     ],
-    video: "https://youtu.be/MCDH-Qy-Yzw",
+    videos: [{ url: "https://youtu.be/_TTErJ6JrLg", label: "360 몰입 영상" }],
   },
   {
     title: "XR·VR 교육 콘텐츠",
@@ -188,7 +188,10 @@ export const BUSINESS_AREAS = [
       { src: "/images/gal-xredu-2.webp", alt: "활쏘기 XR 학습 게임" },
       { src: "/images/gal-xredu-3.webp", alt: "역사 문서 XR 체험" },
     ],
-    video: "https://youtu.be/fUOEKwBV6-U",
+    videos: [
+      { url: "https://youtu.be/5Bq84vDX8_o", label: "유아 VR 유물 학습" },
+      { url: "https://youtu.be/fUOEKwBV6-U", label: "쪼로록 데모" },
+    ],
   },
   {
     title: "디지털 테라피",
@@ -200,7 +203,7 @@ export const BUSINESS_AREAS = [
       { src: "/images/biz-therapy.webp", alt: "실시간 렌더링 힐링 환경 — 숲과 호수" },
       { src: "/images/moments/dome-audience.webp", alt: "몰입형 상영관 관람" },
     ],
-    video: null,
+    videos: [{ url: "https://youtu.be/auAKxX2oUNU", label: "마인드풀 영상" }],
   },
   {
     title: "실감형 교육 프로그램",
@@ -212,7 +215,7 @@ export const BUSINESS_AREAS = [
       { src: "/images/gal-training-2.webp", alt: "강의실 실습 현장" },
       { src: "/images/gal-training-3.webp", alt: "전시 부스 시연" },
     ],
-    video: null,
+    videos: [],
   },
 ] as const;
 
