@@ -9,7 +9,7 @@ const Footer = () => {
           <div>
             <p className="text-lg font-extrabold text-white">
               {SITE.name}
-              <span className="ml-2 text-xs font-medium text-white/50">
+              <span className="ml-2 text-xs font-medium text-white/60">
                 {SITE.nameEn}
               </span>
             </p>
@@ -19,15 +19,15 @@ const Footer = () => {
           </div>
           <dl className="space-y-1.5 text-sm">
             <div className="flex gap-3">
-              <dt className="w-12 shrink-0 text-white/40">주소</dt>
+              <dt className="w-12 shrink-0 text-white/55">주소</dt>
               <dd>{CONTACT.address}</dd>
             </div>
             <div className="flex gap-3">
-              <dt className="w-12 shrink-0 text-white/40">전화</dt>
+              <dt className="w-12 shrink-0 text-white/55">전화</dt>
               <dd>{CONTACT.tel}</dd>
             </div>
             <div className="flex gap-3">
-              <dt className="w-12 shrink-0 text-white/40">이메일</dt>
+              <dt className="w-12 shrink-0 text-white/55">이메일</dt>
               <dd>
                 <a
                   href={`mailto:${CONTACT.email}`}
@@ -39,7 +39,7 @@ const Footer = () => {
             </div>
           </dl>
         </div>
-        <p className="mt-10 border-t border-white/10 pt-6 text-xs text-white/40">
+        <p className="mt-10 border-t border-white/10 pt-6 text-xs text-white/55">
           © {new Date().getFullYear()} {SITE.nameEn}. All rights reserved.
         </p>
       </div>

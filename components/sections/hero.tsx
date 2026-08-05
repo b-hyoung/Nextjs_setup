@@ -7,11 +7,8 @@ import { SITE } from "@/constants/site";
 const Hero = () => {
   return (
     <section id="top" className="relative flex min-h-svh flex-col justify-center bg-hero text-white">
-      <div className="mx-auto w-full max-w-6xl px-5 pt-16">
-        <p className="text-sm font-semibold tracking-[0.2em] text-brand">
-          REAL-TIME CONTENT STUDIO
-        </p>
-        <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+      <div className="hero-enter mx-auto w-full max-w-6xl px-5 pt-16">
+        <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
           {SITE.tagline}
           <br />
           <span className="text-brand">{SITE.name}</span>

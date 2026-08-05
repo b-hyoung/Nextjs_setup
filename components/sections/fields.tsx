@@ -12,14 +12,11 @@ const Fields = () => {
           description="실시간 기술이 만드는 몰입형 경험은 교육·문화·역사·축제 현장에서 검증되고 있습니다."
         />
         <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-neutral-200 bg-neutral-200 sm:grid-cols-2 lg:grid-cols-4">
-          {FIELDS.map((field, i) => (
+          {FIELDS.map((field) => (
             <article key={field.title} className="bg-white p-6">
-              <p className="text-xs font-bold text-brand-strong">
-                {String(i + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-2 text-lg font-bold text-neutral-900">
+              <h3 className="text-lg font-bold text-neutral-900">
                 {field.title}
-                <span className="ml-2 text-xs font-medium uppercase tracking-wider text-neutral-400">
+                <span className="ml-2 text-xs font-medium uppercase tracking-wider text-neutral-500">
                   {field.titleEn}
                 </span>
               </h3>
