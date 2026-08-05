@@ -83,7 +83,7 @@ const Hero = () => {
         </p>
         {/* 시그니처 — 주황 하이라이트 박스 + 검정 트래킹 캡스 */}
         <p className="mt-8 md:mt-10">
-          <span className="inline-block bg-brand px-1.5 py-[3px] text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-950 [text-shadow:none] sm:text-xs">
+          <span className="inline-block bg-brand px-1 py-[1px] text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-950 [text-shadow:none] sm:text-xs">
             {SITE.slogan}
           </span>
         </p>
