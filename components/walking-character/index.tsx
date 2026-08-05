@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * 인터랙티브 캐릭터 — 우선순위: 걷기 > 마우스 시선 > 날개 펄럭임 idle
- * - 스크롤: 시간 기반 걷기 재생 (아래=정방향, 위=역재생=뒤로걷기)
+ * - 스크롤: 시간 기반 걷기 재생 (아래=walk 시트, 위=back 시트)
  * - 멈춘 뒤 마우스가 움직이면: 9방향 시선(gaze)으로 커서를 따라봄
  * - 마우스도 잠잠하면: 6프레임 날개 펄럭임(idle 시트) + 둥실 부유
  */
@@ -18,7 +18,10 @@ const GAZE_DEADZONE = 70;
 const GAZE_THROTTLE_MS = 100;
 const GAZE_HOLD_MS = 2000; // 마우스 멈춘 뒤 시선 유지 시간
 
-const walkSrc = (i: number) => `/images/character/walk-${i}.webp`;
+type Sheet = "walk" | "back";
+
+const walkSrc = (sheet: Sheet, i: number) =>
+  `/images/character/${sheet}-${i}.webp`;
 // gaze: 0 좌상 1 상 2 우상 / 3 좌 4 정면 5 우 / 6 좌하 7 하 8 우하
 const gazeSrc = (i: number) => `/images/character/gaze-${i}.webp`;
 const idleSrc = (i: number) => `/images/character/idle-${i}.webp`;
@@ -38,6 +41,7 @@ const preload = (srcs: string[]) =>
 
 const WalkingCharacter = () => {
   const [frame, setFrame] = useState(0);
+  const [sheet, setSheet] = useState<Sheet>("walk");
   const [idle, setIdle] = useState(true);
   const [gaze, setGaze] = useState(4);
   const [gazeActive, setGazeActive] = useState(false);
@@ -46,7 +50,7 @@ const WalkingCharacter = () => {
   const [walkReady, setWalkReady] = useState(false);
   const [gazeReady, setGazeReady] = useState(false);
   const [idleReady, setIdleReady] = useState(false);
-  const dir = useRef<1 | -1>(1);
+  const dir = useRef<Sheet>("walk");
   const lastScrollAt = useRef(0);
   const lastY = useRef(0);
   const lastGazeAt = useRef(0);
@@ -56,7 +60,11 @@ const WalkingCharacter = () => {
   // 프리로드: 걷기(필수) / 시선·펄럭임(있으면 활성화)
   useEffect(() => {
     let alive = true;
-    preload(Array.from({ length: WALK_FRAMES }, (_, i) => walkSrc(i)))
+    preload(
+      (["walk", "back"] as const).flatMap((sh) =>
+        Array.from({ length: WALK_FRAMES }, (_, i) => walkSrc(sh, i)),
+      ),
+    )
       .then(() => alive && setWalkReady(true))
       .catch(() => {});
     preload(Array.from({ length: 9 }, (_, i) => gazeSrc(i)))
@@ -81,7 +89,7 @@ const WalkingCharacter = () => {
       const delta = y - lastY.current;
       lastY.current = y;
       if (delta === 0) return;
-      dir.current = delta > 0 ? 1 : -1;
+      dir.current = delta > 0 ? "walk" : "back";
       lastScrollAt.current = performance.now();
     };
 
@@ -107,10 +115,11 @@ const WalkingCharacter = () => {
       }
 
       setIdle(false);
+      setSheet(dir.current);
       acc += dt;
       while (acc >= FRAME_MS) {
         acc -= FRAME_MS;
-        currentFrame = (currentFrame + dir.current + WALK_FRAMES) % WALK_FRAMES;
+        currentFrame = (currentFrame + 1) % WALK_FRAMES;
         if (!scrollingRecently && currentFrame === 0) break;
       }
       setFrame(currentFrame);
@@ -197,16 +206,20 @@ const WalkingCharacter = () => {
     >
       {/* 모든 프레임을 겹쳐두고 현재 것만 표시 — 교체 깜빡임 없음 */}
       <div className="relative h-52 w-40 lg:h-64 lg:w-48">
-        {Array.from({ length: WALK_FRAMES }, (_, i) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            key={`walk-${i}`}
-            src={walkSrc(i)}
-            alt=""
-            draggable={false}
-            className={layer(!showGaze && !showIdle && i === frame)}
-          />
-        ))}
+        {(["walk", "back"] as const).map((sh) =>
+          Array.from({ length: WALK_FRAMES }, (_, i) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={`${sh}-${i}`}
+              src={walkSrc(sh, i)}
+              alt=""
+              draggable={false}
+              className={layer(
+                !showGaze && !showIdle && sh === sheet && i === frame,
+              )}
+            />
+          )),
+        )}
         {gazeReady &&
           Array.from({ length: 9 }, (_, i) => (
             // eslint-disable-next-line @next/next/no-img-element
