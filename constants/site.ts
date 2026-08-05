@@ -62,6 +62,7 @@ export const IMAGE_LIBRARY = [
   { src: "/images/gal-xredu-3.webp", label: "역사 문서 XR 체험" },
   { src: "/images/biz-therapy.webp", label: "힐링 환경 렌더" },
   { src: "/images/gal-therapy-2.webp", label: "몰입형 명상" },
+  { src: "/images/gal-therapy-4.webp", label: "밤 단풍 정원" },
   { src: "/images/gal-therapy-3.webp", label: "한옥 호수 힐링" },
   { src: "/images/biz-device.webp", label: "센서·트래킹 장비" },
   { src: "/images/gal-device-2.webp", label: "로봇팔 캐릭터 인터랙션" },
@@ -194,9 +195,9 @@ export const BUSINESS_AREAS = [
     description:
       "자연·명상·치유 요소를 실시간 렌더링 기술로 결합한 몰입형 힐링 환경을 통해 정서 균형, 스트레스 완화, 깊은 심리적 이완을 전달합니다.",
     images: [
+      { src: "/images/gal-therapy-4.webp", alt: "밤 단풍 정원 힐링 환경" },
       { src: "/images/biz-therapy.webp", alt: "실시간 렌더링 힐링 환경 — 숲과 호수" },
       { src: "/images/gal-therapy-2.webp", alt: "몰입형 명상 체험" },
-      { src: "/images/gal-therapy-3.webp", alt: "한옥과 호수 힐링 씬" },
     ],
     video: "https://youtu.be/vdkhWgUaMLo",
   },
