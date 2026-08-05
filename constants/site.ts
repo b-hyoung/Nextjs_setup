@@ -76,27 +76,27 @@ export const IMAGE_LIBRARY = [
   { src: "/images/moments/partnership.webp", label: "파트너십 협약" },
 ] as const;
 
-/** 히어로 배경 슬라이드 — 사람들이 직접 체험·플레이하는 현장 사진 나열 (기본값) */
+/** 히어로 배경 슬라이드 기본값 — /customize에서 확정한 구성 (2026-08-05) */
 export const HERO_SLIDES = [
   {
-    src: "/images/moments/hoonartis-booth.webp",
-    alt: "훈아티스 전시 부스 현장",
-    caption: "훈아티스 전시 부스",
+    src: "/images/gal-device-2.webp",
+    alt: "로봇 팔과 캐릭터 인터랙션 데모",
+    caption: "로봇팔 캐릭터 인터랙션",
   },
   {
-    src: "/images/moments/booth-demo.webp",
-    alt: "부스에서 콘텐츠를 시연하는 모습",
-    caption: "부스 콘텐츠 시연",
+    src: "/images/biz-training.webp",
+    alt: "메타키즈 교육 프로그램 현장",
+    caption: "메타키즈 교육 현장",
   },
   {
-    src: "/images/moments/expo-booth.webp",
-    alt: "관람객이 넛다구리를 체험하는 부스",
-    caption: "넛다구리 체험 부스",
+    src: "/images/biz-mediaart.webp",
+    alt: "인터랙티브 월 프로젝션 설치 공간",
+    caption: "인터랙티브 월",
   },
   {
-    src: "/images/moments/dome-audience.webp",
-    alt: "몰입형 상영관을 관람하는 관객",
-    caption: "몰입형 상영관 관람",
+    src: "/images/gal-mediaart-2.webp",
+    alt: "라이트 인터랙티브 룸",
+    caption: "라이트 인터랙티브 룸",
   },
   {
     src: "/images/gal-training-3.webp",
@@ -104,9 +104,29 @@ export const HERO_SLIDES = [
     caption: "전시 부스 플레이",
   },
   {
-    src: "/images/biz-training.webp",
-    alt: "메타키즈 교육 프로그램 현장",
-    caption: "메타키즈 교육 현장",
+    src: "/images/moments/expo-booth.webp",
+    alt: "관람객이 넛다구리를 체험하는 부스",
+    caption: "넛다구리 체험 부스",
+  },
+  {
+    src: "/images/biz-xredu.webp",
+    alt: "XR 체험 부스 렌더",
+    caption: "XR 체험 부스 렌더",
+  },
+  {
+    src: "/images/biz-twin.webp",
+    alt: "언리얼 엔진으로 재구성한 자연 환경",
+    caption: "디지털트윈 자연 환경",
+  },
+  {
+    src: "/images/gal-therapy-2.webp",
+    alt: "몰입형 명상 체험",
+    caption: "몰입형 명상",
+  },
+  {
+    src: "/images/moments/dome-audience.webp",
+    alt: "몰입형 상영관을 관람하는 관객",
+    caption: "몰입형 상영관 관람",
   },
 ] as const;
 
