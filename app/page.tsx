@@ -1,5 +1,6 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import WalkingCharacter from "@/components/walking-character";
 import Hero from "@/components/sections/hero";
 import Slogan from "@/components/sections/slogan";
 import Business from "@/components/sections/business";
@@ -23,6 +24,7 @@ export default function Home() {
         <Partners />
         <Contact />
       </main>
+      <WalkingCharacter />
       <Footer />
     </>
   );

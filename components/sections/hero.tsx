@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Play } from "lucide-react";
-import { CHARACTER_STICKER, HERO_VIDEO, SITE } from "@/constants/site";
+import { HERO_VIDEO, SITE } from "@/constants/site";
 import { useHeroSlides } from "@/lib/hero-slides-store";
 import { cn } from "@/lib/utils";
 
@@ -132,16 +132,6 @@ const Hero = () => {
         )}
       </div>
 
-      {/* 메인 캐릭터 스티커 — 투명 배경 다이컷 (데스크톱) */}
-      <div className="absolute bottom-14 right-6 hidden rotate-6 md:block lg:right-20">
-        <Image
-          src={CHARACTER_STICKER.src}
-          alt={CHARACTER_STICKER.alt}
-          width={287}
-          height={520}
-          className="h-48 w-auto drop-shadow-[0_8px_16px_rgba(0,0,0,0.45)] lg:h-60"
-        />
-      </div>
 
       {/* 스크롤 마우스 인디케이터 (데스크톱) */}
       <a
