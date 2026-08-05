@@ -23,7 +23,6 @@ export const SITE = {
 export const NAV_ITEMS = [
   { label: "사업분야", href: "#business" },
   { label: "적용분야", href: "#fields" },
-  { label: "기술", href: "#tech" },
   // 연혁은 프로젝트명 확정 후 노출 (HISTORY 데이터 채워지면 복원)
   { label: "파트너", href: "#partners" },
   { label: "문의하기", href: "#contact" },
@@ -241,19 +240,6 @@ export const FIELDS = [
     description:
       "AI-XR 인터랙션으로 방문객 참여를 높이는 실시간 몰입형 콘텐츠를 더합니다.",
   },
-] as const;
-
-/** 기술 스택 — §4 ⑤ */
-export const TECH_STACK = [
-  { name: "Unreal Engine 5.4 / 5.6", category: "실시간 엔진" },
-  { name: "Blender", category: "3D 제작" },
-  { name: "Meta Quest 3", category: "XR 디바이스" },
-  { name: "PCVR", category: "XR 디바이스" },
-  { name: "Azure Kinect", category: "센서" },
-  { name: "Orbbec", category: "센서" },
-  { name: "LiDAR", category: "공간 스캔" },
-  { name: "GIS · BIM", category: "공간 데이터" },
-  { name: "5G MEC · IoT", category: "인프라 연동" },
 ] as const;
 
 /**

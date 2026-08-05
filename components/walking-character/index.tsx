@@ -11,9 +11,9 @@ import { cn } from "@/lib/utils";
  */
 const WALK_FRAMES = 8;
 const IDLE_FRAMES = 6;
-const FRAME_MS = 80; // 걷기 재생 (~12.5fps)
+const FRAME_MS = 70; // 걷기 재생 (~14fps)
 const IDLE_FRAME_MS = 150; // 펄럭임 재생
-const STOP_AFTER_MS = 200;
+const STOP_AFTER_MS = 450; // 스크롤 멈춘 뒤에도 이만큼 더 걷고 마무리 (양방향 동일)
 const GAZE_DEADZONE = 70;
 const GAZE_THROTTLE_MS = 100;
 const GAZE_HOLD_MS = 2000; // 마우스 멈춘 뒤 시선 유지 시간
@@ -45,6 +45,7 @@ const WalkingCharacter = () => {
   const [idle, setIdle] = useState(true);
   const [gaze, setGaze] = useState(4);
   const [gazeActive, setGazeActive] = useState(false);
+  const [gazeMirror, setGazeMirror] = useState(false);
   const [idleFrame, setIdleFrame] = useState(0);
   const [walkReady, setWalkReady] = useState(false);
   const [gazeReady, setGazeReady] = useState(false);
@@ -151,9 +152,15 @@ const WalkingCharacter = () => {
         setGaze(4);
         return;
       }
-      const col = Math.abs(dx) < GAZE_DEADZONE ? 1 : dx < 0 ? 0 : 2;
+      // 시트 아트가 왼쪽 시선만 명확 → 오른쪽은 왼쪽 셀(col0)을 CSS 미러링으로 사용
       const row = Math.abs(dy) < GAZE_DEADZONE ? 1 : dy < 0 ? 0 : 2;
-      setGaze(row * 3 + col);
+      if (Math.abs(dx) < GAZE_DEADZONE) {
+        setGaze(row * 3 + 1);
+        setGazeMirror(false);
+      } else {
+        setGaze(row * 3); // col0 = 왼쪽 보는 아트
+        setGazeMirror(dx > 0); // 오른쪽이면 좌우 반전
+      }
       setGazeActive(true);
       if (gazeHold.current) clearTimeout(gazeHold.current);
       gazeHold.current = setTimeout(() => setGazeActive(false), GAZE_HOLD_MS);
@@ -198,7 +205,7 @@ const WalkingCharacter = () => {
       )}
     >
       {/* 모든 프레임을 겹쳐두고 현재 것만 표시 — 교체 깜빡임 없음 */}
-      <div className="relative h-40 w-32 lg:h-48 lg:w-40">
+      <div className="relative h-52 w-40 lg:h-64 lg:w-48">
         {(["walk", "back"] as const).map((s) =>
           Array.from({ length: WALK_FRAMES }, (_, i) => (
             // eslint-disable-next-line @next/next/no-img-element
@@ -221,7 +228,7 @@ const WalkingCharacter = () => {
               src={gazeSrc(i)}
               alt=""
               draggable={false}
-              className={layer(showGaze && i === gaze)}
+              className={cn(layer(showGaze && i === gaze), showGaze && i === gaze && gazeMirror && "-scale-x-100")}
             />
           ))}
         {idleReady &&
