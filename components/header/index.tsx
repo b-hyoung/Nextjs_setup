@@ -79,7 +79,7 @@ const Header = () => {
             href="/contact"
             className="ml-2 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-hero transition-colors hover:bg-brand-strong hover:text-white"
           >
-            문의하기
+            회사소개
           </Link>
           {/* 히어로 이미지 편집 진입 */}
           <Link
@@ -126,7 +126,7 @@ const Header = () => {
             className="block rounded-md px-2 py-3 text-sm font-medium text-neutral-700 hover:text-brand-strong"
             onClick={() => setOpen(false)}
           >
-            문의하기
+            회사소개
           </Link>
           <Link
             href="/customize"
