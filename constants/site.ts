@@ -160,11 +160,11 @@ export const BUSINESS_AREAS = [
     description:
       "GIS·LiDAR·BIM 공간 데이터로 실제 부지를 정밀 재구성하고, 도시 환경의 소음·바람·인구 흐름을 AI로 모델링합니다. 실시간 IoT 센서 데이터를 연동해 환경 교육·스마트시티 콘텐츠에 최적화합니다.",
     images: [
-      { src: "/images/biz-twin.webp", alt: "언리얼 엔진으로 재구성한 자연 환경" },
-      { src: "/images/gal-twin-2.webp", alt: "실제 부지 — 사찰 원본 사진" },
-      { src: "/images/gal-twin-3.webp", alt: "숲 환경 실시간 렌더" },
+      { src: "/images/hero-poster.webp", alt: "금선암 — 언리얼 엔진 디지털트윈 재구성" },
+      { src: "/images/gal-twin-2.webp", alt: "금선암 실제 부지 사진" },
+      { src: "/images/biz-twin.webp", alt: "자연 환경 실시간 재구성" },
     ],
-    video: null,
+    video: "https://youtu.be/vdkhWgUaMLo",
   },
   {
     title: "몰입형 미디어아트 & 인터랙티브 전시",
@@ -200,7 +200,7 @@ export const BUSINESS_AREAS = [
       { src: "/images/biz-therapy.webp", alt: "실시간 렌더링 힐링 환경 — 숲과 호수" },
       { src: "/images/moments/dome-audience.webp", alt: "몰입형 상영관 관람" },
     ],
-    video: "https://youtu.be/vdkhWgUaMLo",
+    video: null,
   },
   {
     title: "실감형 교육 프로그램",
