@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Play } from "lucide-react";
-import { HERO_VIDEO, SITE } from "@/constants/site";
+import { SITE } from "@/constants/site";
 import { useHeroSlides } from "@/lib/hero-slides-store";
 import { cn } from "@/lib/utils";
 
@@ -83,27 +81,10 @@ const Hero = () => {
           <br className="hidden sm:block" />
           <span className="sm:contents"> {SITE.descriptionLines[1]}</span>
         </p>
-        <p className="mt-6 text-xs font-semibold italic text-white/60 sm:text-sm md:mt-8">
-          “{SITE.slogan}”
+        {/* 시그니처 — 브랜드 컬러 트래킹 캡스 (버넥트식) */}
+        <p className="mt-8 text-[11px] font-bold uppercase tracking-[0.35em] text-brand sm:text-xs md:mt-10">
+          {SITE.slogan}
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 [text-shadow:none] md:mt-10 md:gap-4">
-          <Link
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-bold text-hero transition-colors hover:bg-brand-strong hover:text-white"
-          >
-            문의하기
-            <ArrowRight size={16} />
-          </Link>
-          <a
-            href={`https://youtu.be/${HERO_VIDEO.youtubeId}`}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/70"
-          >
-            <Play size={14} fill="currentColor" />
-            데모 영상 보기
-          </a>
-        </div>
 
         {/* 모바일: 프레임 슬라이드쇼 — 가로 사진을 자르지 않고 보여준다 */}
         {slides.length > 0 && (
