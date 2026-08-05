@@ -86,7 +86,7 @@ const Hero = () => {
         <p className="mt-6 text-xs font-semibold italic text-white/60 sm:text-sm md:mt-8">
           “{SITE.slogan}”
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:mt-10 md:gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 [text-shadow:none] md:mt-10 md:gap-4">
           <Link
             href="#contact"
             className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-bold text-hero transition-colors hover:bg-brand-strong hover:text-white"
