@@ -78,8 +78,10 @@ const Hero = () => {
           <br />
           <span className="text-brand">{SITE.name}</span>
         </h1>
-        <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-lg md:mt-6">
-          {SITE.description}
+        <p className="mx-auto mt-5 max-w-4xl text-sm leading-relaxed text-white/80 sm:text-base md:mt-6 lg:max-w-5xl lg:text-lg">
+          {SITE.descriptionLines[0]}
+          <br className="hidden sm:block" />
+          <span className="sm:contents"> {SITE.descriptionLines[1]}</span>
         </p>
         <p className="mt-6 text-xs font-semibold italic text-white/60 sm:text-sm md:mt-8">
           “{SITE.slogan}”

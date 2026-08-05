@@ -34,6 +34,7 @@ const Header = () => {
           href="#top"
           aria-label={`${SITE.name} 홈으로`}
           onClick={() => setOpen(false)}
+          className="flex flex-col items-center gap-[3px]"
         >
           <Image
             src="/images/logo-2026-wordmark.webp"
@@ -41,8 +42,12 @@ const Header = () => {
             width={1361}
             height={118}
             priority
-            className="h-6 w-auto"
+            className="h-5 w-auto"
           />
+          {/* 서브타이틀은 텍스트로 — 작은 크기에서도 선명 */}
+          <span className="text-[9px] font-medium uppercase leading-none tracking-[0.3em] text-white/60">
+            Immersive AI Labs
+          </span>
         </Link>
 
         {/* 데스크톱 내비게이션 */}
