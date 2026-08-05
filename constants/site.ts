@@ -64,6 +64,7 @@ export const IMAGE_LIBRARY = [
   { src: "/images/gal-therapy-2.webp", label: "몰입형 명상" },
   { src: "/images/gal-therapy-4.webp", label: "밤 단풍 정원" },
   { src: "/images/gal-therapy-3.webp", label: "한옥 호수 힐링" },
+  { src: "/images/gal-device-4.webp", label: "그린스크린 스튜디오" },
   { src: "/images/biz-device.webp", label: "센서·트래킹 장비" },
   { src: "/images/gal-device-2.webp", label: "로봇팔 캐릭터 인터랙션" },
   { src: "/images/gal-device-3.webp", label: "VR 인터랙션 게임" },
@@ -148,7 +149,7 @@ export const BUSINESS_AREAS = [
       "AI 모델과 센서, IoT 디바이스를 실시간으로 연동해 행동 인식, 소음 분석, 반응형 인터랙션을 구현합니다. Azure Kinect·Orbbec·LiDAR 기반 실감형 인터랙션과 5G MEC·IoT 연동 AI 시뮬레이션을 다룹니다.",
     images: [
       { src: "/images/gal-device-2.webp", alt: "로봇 팔과 캐릭터 인터랙션 데모" },
-      { src: "/images/biz-device.webp", alt: "센서·트래킹 장비 구성 현장" },
+      { src: "/images/gal-device-4.webp", alt: "그린스크린 스튜디오" },
       { src: "/images/gal-device-3.webp", alt: "VR 인터랙션 게임 화면" },
     ],
     video: null,
