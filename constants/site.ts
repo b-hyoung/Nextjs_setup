@@ -67,7 +67,7 @@ export const IMAGE_LIBRARY = [
   { src: "/images/gal-device-4.webp", label: "그린스크린 스튜디오" },
   { src: "/images/biz-device.webp", label: "센서·트래킹 장비" },
   { src: "/images/gal-device-2.webp", label: "로봇팔 캐릭터 인터랙션" },
-  { src: "/images/gal-device-3.webp", label: "VR 인터랙션 게임" },
+  { src: "/images/gal-device-3.webp", label: "반려견 상호작용 VR" },
   // 행사·협약 기록
   { src: "/images/moments/award.webp", label: "공모전 수상" },
   { src: "/images/moments/xr-alliance.webp", label: "XR·메타버스 얼라이언스" },
@@ -150,7 +150,7 @@ export const BUSINESS_AREAS = [
     images: [
       { src: "/images/gal-device-2.webp", alt: "로봇 팔과 캐릭터 인터랙션 데모" },
       { src: "/images/gal-device-4.webp", alt: "그린스크린 스튜디오" },
-      { src: "/images/gal-device-3.webp", alt: "VR 인터랙션 게임 화면" },
+      { src: "/images/gal-device-3.webp", alt: "반려견 상호작용 VR 화면" },
     ],
     video: null,
   },
