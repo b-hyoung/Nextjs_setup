@@ -3,6 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { NAV_ITEMS, SITE } from "@/constants/site";
 import { cn } from "@/lib/utils";
@@ -30,13 +31,17 @@ const Header = () => {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <Link
           href="#top"
-          className="text-lg font-extrabold tracking-tight text-white"
+          aria-label={`${SITE.name} 홈으로`}
           onClick={() => setOpen(false)}
         >
-          {SITE.name}
-          <span className="ml-2 hidden text-xs font-medium text-white/60 sm:inline">
-            {SITE.nameEn}
-          </span>
+          <Image
+            src="/images/logo-wide.png"
+            alt={`${SITE.nameEn} 로고`}
+            width={170}
+            height={30}
+            priority
+            className="h-7 w-auto"
+          />
         </Link>
 
         {/* 데스크톱 내비게이션 */}

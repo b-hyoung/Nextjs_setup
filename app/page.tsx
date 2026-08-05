@@ -7,7 +7,6 @@ import Fields from "@/components/sections/fields";
 import TechStack from "@/components/sections/tech-stack";
 import History from "@/components/sections/history";
 import Partners from "@/components/sections/partners";
-import Team from "@/components/sections/team";
 import Contact from "@/components/sections/contact";
 
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
         <TechStack />
         <History />
         <Partners />
-        <Team />
         <Contact />
       </main>
       <Footer />

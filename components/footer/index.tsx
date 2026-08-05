@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { CONTACT, SITE } from "@/constants/site";
 
 const Footer = () => {
@@ -7,13 +8,14 @@ const Footer = () => {
       <div className="mx-auto max-w-6xl px-5 py-12">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
-            <p className="text-lg font-extrabold text-white">
-              {SITE.name}
-              <span className="ml-2 text-xs font-medium text-white/60">
-                {SITE.nameEn}
-              </span>
-            </p>
-            <p className="mt-2 max-w-md text-sm leading-relaxed">
+            <Image
+              src="/images/logo-wide.png"
+              alt={`${SITE.nameEn} 로고`}
+              width={170}
+              height={30}
+              className="h-7 w-auto"
+            />
+            <p className="mt-3 max-w-md text-sm leading-relaxed">
               {SITE.tagline}
             </p>
           </div>

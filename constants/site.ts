@@ -21,7 +21,6 @@ export const NAV_ITEMS = [
   { label: "기술", href: "#tech" },
   { label: "연혁", href: "#history" },
   { label: "파트너", href: "#partners" },
-  { label: "팀", href: "#team" },
   { label: "문의하기", href: "#contact" },
 ] as const;
 
@@ -31,6 +30,35 @@ export const HERO_VIDEO = {
   poster: "/images/hero-poster.webp",
   posterAlt: "훈아티스 실시간 렌더링 데모 — 한옥과 설경",
 } as const;
+
+/** 히어로 배경 슬라이드 — 그동안 작업한 실제 프로젝트 렌더·현장 나열 */
+export const HERO_SLIDES = [
+  {
+    src: "/images/hero-poster.webp",
+    alt: "실시간 렌더링 — 한옥",
+    caption: "실시간 렌더링 · 한옥 재현",
+  },
+  {
+    src: "/images/biz-twin.webp",
+    alt: "디지털트윈 — 자연 환경 재구성",
+    caption: "디지털트윈 · 자연 환경 재구성",
+  },
+  {
+    src: "/images/biz-mediaart.webp",
+    alt: "인터랙티브 미디어아트 설치",
+    caption: "인터랙티브 미디어아트 설치",
+  },
+  {
+    src: "/images/biz-therapy.webp",
+    alt: "디지털 테라피 — 힐링 환경",
+    caption: "디지털 테라피 · 힐링 환경",
+  },
+  {
+    src: "/images/biz-xredu.webp",
+    alt: "XR 체험 부스 운영 현장",
+    caption: "XR 체험 부스 운영",
+  },
+] as const;
 
 /**
  * 사업분야 6개 — §3.2 핵심 역량 + 추가 제작 영역
@@ -145,62 +173,20 @@ export const HISTORY: { date: string; items: string[] }[] = [
   { date: "2017", items: [] },
 ];
 
-/** 파트너 카테고리 — §3.5 (개별 로고 자료 확보 전) */
-export const PARTNER_CATEGORIES = [
-  {
-    title: "지자체·공공기관",
-    description: "전국 지자체·공공기관 프로젝트 다수 수행",
-  },
-  {
-    title: "대학·연구기관",
-    description: "대학 강의·산학협력 및 XR 교육 커리큘럼 운영",
-  },
-  {
-    title: "글로벌 행사",
-    description: "GITEX 등 글로벌 테크 페어 참가 실적",
-  },
-  {
-    title: "B2B 파트너",
-    description: "기업 대상 실감형 콘텐츠·교육 협력",
-  },
+/** 파트너 로고 — 소개서 Key Clients & Partners 슬라이드(17·20·25)에서 추출 */
+export const PARTNER_LOGOS = [
+  { src: "/images/partners/jeonju-city.webp", name: "전주시" },
+  { src: "/images/partners/iksan.webp", name: "익산시" },
+  { src: "/images/partners/jeonju-univ.webp", name: "전주대학교" },
+  { src: "/images/partners/vision-college.webp", name: "전주비전대학교" },
+  { src: "/images/partners/sori-arts.webp", name: "한국소리문화의전당" },
+  { src: "/images/partners/mbc.webp", name: "MBC" },
+  { src: "/images/partners/jtv.webp", name: "JTV" },
+  { src: "/images/partners/epic-games.webp", name: "Epic Games" },
+  { src: "/images/partners/gitex.webp", name: "GITEX GLOBAL" },
+  { src: "/images/partners/gstar.webp", name: "G-STAR" },
+  { src: "/images/partners/megaus-expo.webp", name: "메가어스 엑스포" },
 ] as const;
-
-/** 팀 — §3.4 (소개서 기재 내용만) */
-export const TEAM = [
-  {
-    name: "이훈주",
-    role: "CEO · 사업총괄",
-    career: "콘텐츠 제작·메타버스 기획 총괄 7년",
-    highlights: [
-      "AI 콘텐츠 제작 + 현장 교육, 두 가지 실무 기반 융합",
-      "기능성 게임 제작, XR 기반 이러닝 콘텐츠 개발",
-      "XR 메타버스 제작 지원",
-    ],
-  },
-  {
-    name: "이권주",
-    role: "CTO",
-    career: "XR 콘텐츠 제작 실무 경력 14년",
-    highlights: [
-      "언리얼 엔진 실습·메타휴먼 교육",
-      "유니티 기초 C# 프로그래밍 교육 특강",
-      "'아트숲 속 XR 세계소리여행' 레벨 디자인",
-    ],
-  },
-  {
-    name: "김상혁",
-    role: "COO",
-    career: "분자생물학 전공 · 생성형 AI 미디어 프로젝트 5건 이상",
-    highlights: [
-      "AI 콘텐츠 생성·인터랙티브 실습 지도",
-      "XR 콘텐츠 체험 교육 보조강사",
-      "'보노루의 모험' 게임 제작",
-    ],
-  },
-] as const;
-
-export const TEAM_NOTE =
-  "전기공학·분자생물학·디자인 배경이 융합된 현장형 원팀. 교육·기술·감성까지 연결하는 융합형 전문가들로 구성되어 있습니다.";
 
 /** 연락처 — §3.7 */
 export const CONTACT = {
