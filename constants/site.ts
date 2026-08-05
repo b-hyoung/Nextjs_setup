@@ -189,8 +189,8 @@ export const BUSINESS_AREAS = [
       { src: "/images/gal-xredu-3.webp", alt: "역사 문서 XR 체험" },
     ],
     videos: [
-      { url: "https://youtu.be/5Bq84vDX8_o", label: "유아 VR 유물 학습" },
       { url: "https://youtu.be/fUOEKwBV6-U", label: "쪼로록 데모" },
+      { url: "https://youtu.be/5Bq84vDX8_o", label: "유아 VR 유물 학습" },
     ],
   },
   {
