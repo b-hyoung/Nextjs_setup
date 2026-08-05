@@ -5,7 +5,7 @@ import { SITE } from "@/constants/site";
 const Slogan = () => {
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+      <div className="mx-auto max-w-[1440px] px-5 py-20 sm:py-24">
         <p className="max-w-3xl text-balance text-2xl font-extrabold leading-snug tracking-tight text-neutral-900 sm:text-3xl">
           {SITE.vision}
         </p>

@@ -17,7 +17,7 @@ const History = () => {
 
   return (
     <section id="history" className="scroll-mt-16 bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+      <div className="mx-auto max-w-[1440px] px-5 py-20 sm:py-24">
         <SectionHeading
           title="연혁"
           description="지금의 훈아티스가 걸어온 길입니다."

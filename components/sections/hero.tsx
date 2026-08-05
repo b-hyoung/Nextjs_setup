@@ -4,10 +4,15 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Play } from "lucide-react";
-import { HERO_SLIDES, HERO_VIDEO, SITE } from "@/constants/site";
+import {
+  CHARACTER_STICKER,
+  HERO_SLIDES,
+  HERO_VIDEO,
+  SITE,
+} from "@/constants/site";
 import { cn } from "@/lib/utils";
 
-const SLIDE_MS = 4500;
+const SLIDE_MS = 2200;
 
 /** 히어로 — 그동안 작업한 프로젝트 렌더·현장이 크로스페이드로 나열되는 풀스크린 구성 */
 const Hero = () => {
@@ -37,15 +42,15 @@ const Hero = () => {
           priority={i === 0}
           sizes="100vw"
           className={cn(
-            "object-cover transition-opacity duration-1000",
+            "object-cover transition-opacity duration-300",
             i === index ? "opacity-100" : "opacity-0",
           )}
         />
       ))}
       {/* 가독성 오버레이 */}
-      <div className="absolute inset-0 bg-gradient-to-b from-hero/70 via-hero/45 to-hero/85" />
+      <div className="absolute inset-0 bg-gradient-to-b from-hero/55 via-hero/25 to-hero/65" />
 
-      <div className="hero-enter relative mx-auto w-full max-w-6xl px-5 pt-16 text-center">
+      <div className="hero-enter relative mx-auto w-full max-w-[1440px] px-5 pt-16 text-center">
         <h1 className="mx-auto text-balance text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
           {SITE.tagline}
           <br />
@@ -75,6 +80,17 @@ const Hero = () => {
             데모 영상 보기
           </a>
         </div>
+      </div>
+
+      {/* 메인 캐릭터 스티커 */}
+      <div className="absolute bottom-16 right-6 hidden rotate-6 md:block lg:right-16">
+        <Image
+          src={CHARACTER_STICKER.src}
+          alt={CHARACTER_STICKER.alt}
+          width={144}
+          height={144}
+          className="size-32 rounded-full object-cover shadow-xl ring-4 ring-white/80 lg:size-36"
+        />
       </div>
 
       {/* 현재 슬라이드 캡션 + 인디케이터 */}

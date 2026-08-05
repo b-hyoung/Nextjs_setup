@@ -25,7 +25,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="scroll-mt-16 bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+      <div className="mx-auto max-w-[1440px] px-5 py-20 sm:py-24">
         <SectionHeading
           title="문의하기"
           description={

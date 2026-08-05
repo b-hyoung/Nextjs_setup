@@ -5,7 +5,7 @@ import { FIELDS } from "@/constants/site";
 const Fields = () => {
   return (
     <section id="fields" className="scroll-mt-16 bg-neutral-50">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:py-24 lg:grid-cols-[240px_1fr]">
+      <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-20 sm:py-24 lg:grid-cols-[240px_1fr]">
         <div>
           <h2 className="text-balance text-3xl font-extrabold tracking-tight text-neutral-900">
             적용분야

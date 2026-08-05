@@ -60,9 +60,35 @@ export const HERO_SLIDES = [
   },
 ] as const;
 
+/** 메인 캐릭터 스티커 — 소개서 렌더(요정 캐릭터) 크롭 */
+export const CHARACTER_STICKER = {
+  src: "/images/character-sticker.webp",
+  alt: "훈아티스 메인 캐릭터 — 요정 날개 소녀",
+} as const;
+
+/** 메인 스트립 — 만든 것들 + 전시·행사 참여 사진 (소개서 추출) */
+export const MOMENTS = [
+  { src: "/images/moments/expo-booth.webp", alt: "전시 부스 — 넛다구리 시연" },
+  { src: "/images/gal-device-2.webp", alt: "로봇 팔 캐릭터 인터랙션" },
+  { src: "/images/moments/xr-alliance.webp", alt: "전북·전주 XR·메타버스 얼라이언스" },
+  { src: "/images/biz-mediaart.webp", alt: "인터랙티브 월 설치" },
+  { src: "/images/moments/award.webp", alt: "아이디어 공모전 수상" },
+  { src: "/images/gal-xredu-2.webp", alt: "활쏘기 XR 학습 게임" },
+  { src: "/images/moments/booth-demo.webp", alt: "부스 데모 시연" },
+  { src: "/images/biz-twin.webp", alt: "디지털트윈 자연 환경" },
+  { src: "/images/moments/vietnam-forum.webp", alt: "베트남-한국 디지털 포럼 MOU" },
+  { src: "/images/biz-xredu.webp", alt: "XR 체험 부스" },
+  { src: "/images/moments/jeonju-ict.webp", alt: "전주 ICT 기업인 시상" },
+  { src: "/images/gal-training-3.webp", alt: "전시 부스 시연" },
+  { src: "/images/moments/iksan-mou.webp", alt: "익산 협약 체결" },
+  { src: "/images/biz-therapy.webp", alt: "디지털 테라피 힐링 환경" },
+  { src: "/images/moments/partnership.webp", alt: "파트너십 협약" },
+  { src: "/images/biz-training.webp", alt: "메타키즈 교육 현장" },
+] as const;
+
 /**
  * 사업분야 6개 — §3.2 핵심 역량 + 추가 제작 영역
- * image: PPTX에서 추출한 실제 프로젝트 이미지 / video: 소개서에 링크된 자사 유튜브 데모
+ * images: PPTX에서 추출한 실제 프로젝트 이미지 여러 장 / video: 소개서에 링크된 자사 유튜브 데모
  */
 export const BUSINESS_AREAS = [
   {
@@ -70,8 +96,11 @@ export const BUSINESS_AREAS = [
     tags: "행동 인식 / 센서·IoT 연동",
     description:
       "AI 모델과 센서, IoT 디바이스를 실시간으로 연동해 행동 인식, 소음 분석, 반응형 인터랙션을 구현합니다. Azure Kinect·Orbbec·LiDAR 기반 실감형 인터랙션과 5G MEC·IoT 연동 AI 시뮬레이션을 다룹니다.",
-    image: "/images/biz-device.webp",
-    imageAlt: "센서·트래킹 장비 구성 현장",
+    images: [
+      { src: "/images/gal-device-2.webp", alt: "로봇 팔과 캐릭터 인터랙션 데모" },
+      { src: "/images/biz-device.webp", alt: "센서·트래킹 장비 구성 현장" },
+      { src: "/images/gal-device-3.webp", alt: "VR 인터랙션 게임 화면" },
+    ],
     video: null,
   },
   {
@@ -79,8 +108,11 @@ export const BUSINESS_AREAS = [
     tags: "공간 데이터 / 환경 시뮬레이션",
     description:
       "GIS·LiDAR·BIM 공간 데이터로 실제 부지를 정밀 재구성하고, 도시 환경의 소음·바람·인구 흐름을 AI로 모델링합니다. 실시간 IoT 센서 데이터를 연동해 환경 교육·스마트시티 콘텐츠에 최적화합니다.",
-    image: "/images/biz-twin.webp",
-    imageAlt: "언리얼 엔진으로 재구성한 자연 환경 디지털트윈",
+    images: [
+      { src: "/images/biz-twin.webp", alt: "언리얼 엔진으로 재구성한 자연 환경" },
+      { src: "/images/gal-twin-2.webp", alt: "실제 부지 — 사찰 원본 사진" },
+      { src: "/images/gal-twin-3.webp", alt: "숲 환경 실시간 렌더" },
+    ],
     video: null,
   },
   {
@@ -88,8 +120,11 @@ export const BUSINESS_AREAS = [
     tags: "프로젝션 맵핑 / 설치미술",
     description:
       "4면·5면 프로젝션 맵핑과 대형 인터랙티브 월, 센서 기반 설치미술 콘텐츠를 제작합니다. 다수의 현장 운영 경험으로 기획부터 운영까지 지원합니다.",
-    image: "/images/biz-mediaart.webp",
-    imageAlt: "인터랙티브 월 프로젝션 설치 공간",
+    images: [
+      { src: "/images/biz-mediaart.webp", alt: "인터랙티브 월 프로젝션 설치 공간" },
+      { src: "/images/gal-mediaart-2.webp", alt: "라이트 인터랙티브 룸" },
+      { src: "/images/gal-mediaart-3.webp", alt: "프로젝션 시연 현장" },
+    ],
     video: "https://youtu.be/MCDH-Qy-Yzw",
   },
   {
@@ -97,8 +132,11 @@ export const BUSINESS_AREAS = [
     tags: "Meta Quest / PCVR",
     description:
       "복잡한 개념을 체험형 디지털 환경으로 전환하는 몰입형 XR 학습 콘텐츠를 만듭니다. Meta Quest 3, PCVR 등 다양한 디바이스 대응 제작·배포 경험을 갖추고 있습니다.",
-    image: "/images/biz-xredu.webp",
-    imageAlt: "XR 체험 부스 운영 현장",
+    images: [
+      { src: "/images/biz-xredu.webp", alt: "XR 체험 부스 운영 현장" },
+      { src: "/images/gal-xredu-2.webp", alt: "활쏘기 XR 학습 게임" },
+      { src: "/images/gal-xredu-3.webp", alt: "동물 상호작용 VR 콘텐츠" },
+    ],
     video: "https://youtu.be/fUOEKwBV6-U",
   },
   {
@@ -106,8 +144,11 @@ export const BUSINESS_AREAS = [
     tags: "힐링 환경 / 명상·치유",
     description:
       "자연·명상·치유 요소를 실시간 렌더링 기술로 결합한 몰입형 힐링 환경을 통해 정서 균형, 스트레스 완화, 깊은 심리적 이완을 전달합니다.",
-    image: "/images/biz-therapy.webp",
-    imageAlt: "실시간 렌더링 힐링 환경 — 숲과 호수",
+    images: [
+      { src: "/images/biz-therapy.webp", alt: "실시간 렌더링 힐링 환경 — 숲과 호수" },
+      { src: "/images/gal-therapy-2.webp", alt: "몰입형 명상 체험" },
+      { src: "/images/gal-therapy-3.webp", alt: "한옥과 호수 힐링 씬" },
+    ],
     video: "https://youtu.be/vdkhWgUaMLo",
   },
   {
@@ -115,8 +156,11 @@ export const BUSINESS_AREAS = [
     tags: "XR 커리큘럼 / 실무 워크숍",
     description:
       "대학·기관 대상 XR 교육 커리큘럼을 운영하고 실감형 콘텐츠 제작 워크숍을 진행합니다. 정부기관·대학·기업에 AI·언리얼엔진·프로그래밍 실무 교육을 제공합니다.",
-    image: "/images/biz-training.webp",
-    imageAlt: "메타키즈 교육 프로그램 강의 현장",
+    images: [
+      { src: "/images/biz-training.webp", alt: "메타키즈 교육 프로그램 강의 현장" },
+      { src: "/images/gal-training-2.webp", alt: "강의실 실습 현장" },
+      { src: "/images/gal-training-3.webp", alt: "전시 부스 시연" },
+    ],
     video: null,
   },
 ] as const;

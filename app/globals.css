@@ -162,4 +162,28 @@
       transform: translateY(0);
     }
   }
+  /* 메인 스트립 마퀴 — 두 벌 렌더링 기준 절반 이동 후 루프 */
+  .marquee {
+    animation: marquee-scroll 45s linear infinite;
+  }
+  .marquee:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+.marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
 }

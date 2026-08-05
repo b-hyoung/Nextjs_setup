@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 const Business = () => {
   return (
     <section id="business" className="scroll-mt-16 bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+      <div className="mx-auto max-w-[1440px] px-5 py-20 sm:py-24">
         <SectionHeading
           title="사업분야"
           description={
@@ -25,19 +25,33 @@ const Business = () => {
               key={area.title}
               className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14"
             >
-              <div
-                className={cn(
-                  "relative aspect-video overflow-hidden rounded-xl bg-neutral-100",
-                  i % 2 === 1 && "lg:order-2",
-                )}
-              >
-                <Image
-                  src={area.image}
-                  alt={area.imageAlt}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
-                />
+              {/* 대표 이미지 1장 + 보조 이미지 2장 모자이크 */}
+              <div className={cn("space-y-3", i % 2 === 1 && "lg:order-2")}>
+                <div className="relative aspect-video overflow-hidden rounded-xl bg-neutral-100">
+                  <Image
+                    src={area.images[0].src}
+                    alt={area.images[0].alt}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {area.images.slice(1).map((img) => (
+                    <div
+                      key={img.src}
+                      className="relative aspect-[16/8] overflow-hidden rounded-lg bg-neutral-100"
+                    >
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="(min-width: 1024px) 25vw, 50vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className={cn(i % 2 === 1 && "lg:order-1")}>
                 <p className="text-sm font-semibold text-brand-strong">

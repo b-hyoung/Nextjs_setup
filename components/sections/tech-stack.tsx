@@ -6,7 +6,7 @@ import SectionHeading from "./section-heading";
 const TechStack = () => {
   return (
     <section id="tech" className="scroll-mt-16 bg-neutral-50">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+      <div className="mx-auto max-w-[1440px] px-5 py-20 sm:py-24">
         <SectionHeading
           title="기술 스택"
           description="캐릭터·환경·VFX·인터랙션·프로그래밍까지 전 과정을 인하우스 실시간 엔진 워크플로로 제작합니다."
