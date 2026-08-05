@@ -31,32 +31,37 @@ export const HERO_VIDEO = {
   posterAlt: "훈아티스 실시간 렌더링 데모 — 한옥과 설경",
 } as const;
 
-/** 히어로 배경 슬라이드 — 그동안 작업한 실제 프로젝트 렌더·현장 나열 */
+/** 히어로 배경 슬라이드 — 사람들이 직접 체험·플레이하는 현장 사진 나열 */
 export const HERO_SLIDES = [
   {
-    src: "/images/hero-poster.webp",
-    alt: "실시간 렌더링 — 한옥",
-    caption: "실시간 렌더링 · 한옥 재현",
+    src: "/images/moments/hoonartis-booth.webp",
+    alt: "훈아티스 전시 부스 현장",
+    caption: "훈아티스 전시 부스",
   },
   {
-    src: "/images/biz-twin.webp",
-    alt: "디지털트윈 — 자연 환경 재구성",
-    caption: "디지털트윈 · 자연 환경 재구성",
+    src: "/images/moments/booth-demo.webp",
+    alt: "부스에서 콘텐츠를 시연하는 모습",
+    caption: "부스 콘텐츠 시연",
   },
   {
-    src: "/images/biz-mediaart.webp",
-    alt: "인터랙티브 미디어아트 설치",
-    caption: "인터랙티브 미디어아트 설치",
+    src: "/images/moments/expo-booth.webp",
+    alt: "관람객이 넛다구리를 체험하는 부스",
+    caption: "넛다구리 체험 부스",
   },
   {
-    src: "/images/biz-therapy.webp",
-    alt: "디지털 테라피 — 힐링 환경",
-    caption: "디지털 테라피 · 힐링 환경",
+    src: "/images/moments/dome-audience.webp",
+    alt: "몰입형 상영관을 관람하는 관객",
+    caption: "몰입형 상영관 관람",
   },
   {
-    src: "/images/biz-xredu.webp",
-    alt: "XR 체험 부스 운영 현장",
-    caption: "XR 체험 부스 운영",
+    src: "/images/gal-training-3.webp",
+    alt: "전시 부스에서 게임을 플레이하는 참가자",
+    caption: "전시 부스 플레이",
+  },
+  {
+    src: "/images/biz-training.webp",
+    alt: "메타키즈 교육 프로그램 현장",
+    caption: "메타키즈 교육 현장",
   },
 ] as const;
 
@@ -65,26 +70,6 @@ export const CHARACTER_STICKER = {
   src: "/images/character-sticker.webp",
   alt: "훈아티스 메인 캐릭터 — 요정 날개 소녀",
 } as const;
-
-/** 메인 스트립 — 만든 것들 + 전시·행사 참여 사진 (소개서 추출) */
-export const MOMENTS = [
-  { src: "/images/moments/expo-booth.webp", alt: "전시 부스 — 넛다구리 시연" },
-  { src: "/images/gal-device-2.webp", alt: "로봇 팔 캐릭터 인터랙션" },
-  { src: "/images/moments/xr-alliance.webp", alt: "전북·전주 XR·메타버스 얼라이언스" },
-  { src: "/images/biz-mediaart.webp", alt: "인터랙티브 월 설치" },
-  { src: "/images/moments/award.webp", alt: "아이디어 공모전 수상" },
-  { src: "/images/gal-xredu-2.webp", alt: "활쏘기 XR 학습 게임" },
-  { src: "/images/moments/booth-demo.webp", alt: "부스 데모 시연" },
-  { src: "/images/biz-twin.webp", alt: "디지털트윈 자연 환경" },
-  { src: "/images/moments/vietnam-forum.webp", alt: "베트남-한국 디지털 포럼 MOU" },
-  { src: "/images/biz-xredu.webp", alt: "XR 체험 부스" },
-  { src: "/images/moments/jeonju-ict.webp", alt: "전주 ICT 기업인 시상" },
-  { src: "/images/gal-training-3.webp", alt: "전시 부스 시연" },
-  { src: "/images/moments/iksan-mou.webp", alt: "익산 협약 체결" },
-  { src: "/images/biz-therapy.webp", alt: "디지털 테라피 힐링 환경" },
-  { src: "/images/moments/partnership.webp", alt: "파트너십 협약" },
-  { src: "/images/biz-training.webp", alt: "메타키즈 교육 현장" },
-] as const;
 
 /**
  * 사업분야 6개 — §3.2 핵심 역량 + 추가 제작 영역

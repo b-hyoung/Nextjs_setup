@@ -8,7 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-pretendard), "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-paperlogy), var(--font-sans);
   --color-brand: var(--brand);
   --color-brand-strong: var(--brand-strong);
   --color-hero: var(--hero);
@@ -136,6 +136,12 @@
     /* 한국어 조판: 단어 중간 줄바꿈 방지 */
     word-break: keep-all;
   }
+  /* 헤딩은 디스플레이 폰트가 목소리를 담당 */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+  }
   /* 브라우저 기본 표면도 브랜드 팔레트로: 셀렉션·포커스 링 */
   ::selection {
     background: var(--brand);
@@ -162,28 +168,4 @@
       transform: translateY(0);
     }
   }
-  /* 메인 스트립 마퀴 — 두 벌 렌더링 기준 절반 이동 후 루프 */
-  .marquee {
-    animation: marquee-scroll 45s linear infinite;
-  }
-  .marquee:hover {
-    animation-play-state: paused;
-  }
-  @keyframes marquee-scroll {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-}
-.marquee-mask {
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 6%,
-    black 94%,
-    transparent
-  );
 }

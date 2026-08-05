@@ -9,6 +9,16 @@ const pretendard = localFont({
   variable: "--font-pretendard",
 });
 
+/** 헤딩 전용 디스플레이 폰트 — 기하학적 모던 (impeccable typeset) */
+const paperlogy = localFont({
+  src: [
+    { path: "../public/fonts/Paperlogy-7Bold.woff2", weight: "700" },
+    { path: "../public/fonts/Paperlogy-8ExtraBold.woff2", weight: "800" },
+  ],
+  display: "swap",
+  variable: "--font-paperlogy",
+});
+
 export const metadata: Metadata = {
   title: "훈아티스 | AI·XR·디지털트윈 실시간 콘텐츠 스튜디오",
   description:
@@ -21,7 +31,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${pretendard.variable} h-full antialiased`}>
+    <html
+      lang="ko"
+      className={`${pretendard.variable} ${paperlogy.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col font-sans bg-white text-neutral-900">
         {children}
       </body>

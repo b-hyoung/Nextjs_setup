@@ -2,7 +2,6 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Hero from "@/components/sections/hero";
 import Slogan from "@/components/sections/slogan";
-import Moments from "@/components/sections/moments";
 import Business from "@/components/sections/business";
 import Fields from "@/components/sections/fields";
 import TechStack from "@/components/sections/tech-stack";
@@ -16,7 +15,6 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Moments />
         <Slogan />
         <Business />
         <Fields />

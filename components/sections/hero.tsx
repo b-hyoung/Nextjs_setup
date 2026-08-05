@@ -82,14 +82,14 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* 메인 캐릭터 스티커 */}
-      <div className="absolute bottom-16 right-6 hidden rotate-6 md:block lg:right-16">
+      {/* 메인 캐릭터 스티커 — 투명 배경 다이컷 */}
+      <div className="absolute bottom-14 right-6 hidden rotate-6 md:block lg:right-20">
         <Image
           src={CHARACTER_STICKER.src}
           alt={CHARACTER_STICKER.alt}
-          width={144}
-          height={144}
-          className="size-32 rounded-full object-cover shadow-xl ring-4 ring-white/80 lg:size-36"
+          width={287}
+          height={520}
+          className="h-48 w-auto drop-shadow-[0_8px_16px_rgba(0,0,0,0.45)] lg:h-60"
         />
       </div>
 
