@@ -15,11 +15,24 @@ export const SITE = {
     "물리 세계와 디지털 세계를 잇는 몰입형 기술을 개척해 교육·문화·미래도시를 위한 경험을 만듭니다.",
 } as const;
 
+/** 사이드 커스터마이저에서 넣었다 뺐다 할 수 있는 섹션 목록 */
+export const SECTION_REGISTRY = [
+  { id: "slogan", label: "비전 문구", anchor: null },
+  { id: "business", label: "사업분야", anchor: "#business" },
+  { id: "fields", label: "적용분야", anchor: "#fields" },
+  { id: "tech", label: "기술 스택", anchor: "#tech" },
+  { id: "partners", label: "파트너", anchor: "#partners" },
+  { id: "contact", label: "문의하기", anchor: "#contact" },
+  { id: "sticker", label: "캐릭터 스티커", anchor: null },
+] as const;
+
+export type SectionId = (typeof SECTION_REGISTRY)[number]["id"];
+
 export const NAV_ITEMS = [
   { label: "사업분야", href: "#business" },
   { label: "적용분야", href: "#fields" },
   { label: "기술", href: "#tech" },
-  { label: "연혁", href: "#history" },
+  // 연혁은 프로젝트명 확정 후 노출 (HISTORY 데이터 채워지면 복원)
   { label: "파트너", href: "#partners" },
   { label: "문의하기", href: "#contact" },
 ] as const;

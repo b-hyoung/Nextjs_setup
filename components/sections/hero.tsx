@@ -14,8 +14,8 @@ import { cn } from "@/lib/utils";
 
 const SLIDE_MS = 2200;
 
-/** 히어로 — 그동안 작업한 프로젝트 렌더·현장이 크로스페이드로 나열되는 풀스크린 구성 */
-const Hero = () => {
+/** 히어로 — 체험·플레이 현장 사진이 빠른 컷으로 나열되는 풀스크린 구성 */
+const Hero = ({ showSticker = true }: { showSticker?: boolean }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -83,7 +83,12 @@ const Hero = () => {
       </div>
 
       {/* 메인 캐릭터 스티커 — 투명 배경 다이컷 */}
-      <div className="absolute bottom-14 right-6 hidden rotate-6 md:block lg:right-20">
+      <div
+        className={cn(
+          "absolute bottom-14 right-6 hidden rotate-6 lg:right-20",
+          showSticker && "md:block",
+        )}
+      >
         <Image
           src={CHARACTER_STICKER.src}
           alt={CHARACTER_STICKER.alt}

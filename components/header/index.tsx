@@ -8,9 +8,12 @@ import { Menu, X } from "lucide-react";
 import { NAV_ITEMS, SITE } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
-const Header = () => {
+const Header = ({ hiddenAnchors = [] }: { hiddenAnchors?: string[] }) => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const navItems = NAV_ITEMS.filter(
+    (item) => !hiddenAnchors.includes(item.href),
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -46,7 +49,7 @@ const Header = () => {
 
         {/* 데스크톱 내비게이션 */}
         <nav className="hidden items-center gap-1 md:flex">
-          {NAV_ITEMS.map((item) =>
+          {navItems.map((item) =>
             item.label === "문의하기" ? (
               <Link
                 key={item.href}
@@ -81,7 +84,7 @@ const Header = () => {
       {/* 모바일 메뉴 */}
       {open && (
         <nav className="border-t border-white/10 bg-hero px-5 pb-4 md:hidden">
-          {NAV_ITEMS.map((item) => (
+          {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
