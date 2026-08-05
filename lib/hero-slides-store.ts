@@ -35,29 +35,31 @@ export type HeroSlide = { src: string; alt: string; caption: string };
 
 const DEFAULT_SLIDES: HeroSlide[] = HERO_SLIDES.map((s) => ({ ...s }));
 
-/** 저장된 src 순서 목록 (없으면 null) */
+/**
+ * 저장된 src 순서 목록.
+ * null = 커스텀한 적 없음(기본값 사용) / [] = 의도적으로 전부 뺀 상태(빈 히어로 유지)
+ */
 export const useCustomSlideSrcs = (): string[] | null => {
   const raw = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   return useMemo(() => {
-    if (!raw) return null;
+    if (raw === null) return null;
     try {
       const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) && parsed.length > 0 ? parsed : null;
+      return Array.isArray(parsed) ? parsed : null;
     } catch {
       return null;
     }
   }, [raw]);
 };
 
-/** 히어로가 실제로 렌더링할 슬라이드 (커스텀 없으면 기본값) */
+/** 히어로가 실제로 렌더링할 슬라이드 — 커스텀 없으면 기본값, 전부 뺐으면 빈 배열 */
 export const useHeroSlides = (): HeroSlide[] => {
   const custom = useCustomSlideSrcs();
   return useMemo(() => {
-    if (!custom) return DEFAULT_SLIDES;
-    const slides = custom
+    if (custom === null) return DEFAULT_SLIDES;
+    return custom
       .map((src) => IMAGE_LIBRARY.find((img) => img.src === src))
       .filter((img): img is (typeof IMAGE_LIBRARY)[number] => Boolean(img))
       .map((img) => ({ src: img.src, alt: img.label, caption: img.label }));
-    return slides.length > 0 ? slides : DEFAULT_SLIDES;
   }, [custom]);
 };

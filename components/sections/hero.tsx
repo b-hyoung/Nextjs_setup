@@ -11,12 +11,14 @@ import { cn } from "@/lib/utils";
 const SLIDE_MS = 2200;
 
 /** 히어로 — 체험·플레이 현장 사진이 빠른 컷으로 나열되는 풀스크린 구성 */
-const Hero = ({ showSticker = true }: { showSticker?: boolean }) => {
+const Hero = () => {
   const slides = useHeroSlides();
   const [index, setIndex] = useState(0);
-  const safeIndex = index % slides.length;
+  // 전부 뺀 상태(0장)면 어두운 배경만 유지
+  const safeIndex = slides.length > 0 ? index % slides.length : 0;
 
   useEffect(() => {
+    if (slides.length < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setInterval(
       () => setIndex((i) => (i + 1) % slides.length),
@@ -81,12 +83,7 @@ const Hero = ({ showSticker = true }: { showSticker?: boolean }) => {
       </div>
 
       {/* 메인 캐릭터 스티커 — 투명 배경 다이컷 */}
-      <div
-        className={cn(
-          "absolute bottom-14 right-6 hidden rotate-6 lg:right-20",
-          showSticker && "md:block",
-        )}
-      >
+      <div className="absolute bottom-14 right-6 hidden rotate-6 md:block lg:right-20">
         <Image
           src={CHARACTER_STICKER.src}
           alt={CHARACTER_STICKER.alt}
@@ -97,25 +94,27 @@ const Hero = ({ showSticker = true }: { showSticker?: boolean }) => {
       </div>
 
       {/* 현재 슬라이드 캡션 + 인디케이터 */}
-      <div className="absolute inset-x-0 bottom-8 flex flex-col items-center gap-3">
-        <p className="text-xs font-medium text-white/70">
-          {slides[safeIndex].caption}
-        </p>
-        <div className="flex gap-2">
-          {slides.map((slide, i) => (
-            <button
-              key={slide.src}
-              type="button"
-              aria-label={`${i + 1}번 슬라이드 보기`}
-              onClick={() => setIndex(i)}
-              className={cn(
-                "h-1 rounded-full transition-all",
-                i === safeIndex ? "w-8 bg-brand" : "w-4 bg-white/30",
-              )}
-            />
-          ))}
+      {slides.length > 0 && (
+        <div className="absolute inset-x-0 bottom-8 flex flex-col items-center gap-3">
+          <p className="text-xs font-medium text-white/70">
+            {slides[safeIndex].caption}
+          </p>
+          <div className="flex gap-2">
+            {slides.map((slide, i) => (
+              <button
+                key={slide.src}
+                type="button"
+                aria-label={`${i + 1}번 슬라이드 보기`}
+                onClick={() => setIndex(i)}
+                className={cn(
+                  "h-1 rounded-full transition-all",
+                  i === safeIndex ? "w-8 bg-brand" : "w-4 bg-white/30",
+                )}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

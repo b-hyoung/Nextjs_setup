@@ -4,16 +4,14 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, SlidersHorizontal } from "lucide-react";
 import { NAV_ITEMS, SITE } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
-const Header = ({ hiddenAnchors = [] }: { hiddenAnchors?: string[] }) => {
+const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const navItems = NAV_ITEMS.filter(
-    (item) => !hiddenAnchors.includes(item.href),
-  );
+  const navItems = NAV_ITEMS;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -68,6 +66,15 @@ const Header = ({ hiddenAnchors = [] }: { hiddenAnchors?: string[] }) => {
               </Link>
             ),
           )}
+          {/* 히어로 이미지 편집 진입 */}
+          <Link
+            href="/customize"
+            aria-label="히어로 이미지 편집"
+            title="히어로 이미지 편집"
+            className="ml-1 rounded-md p-2 text-white/60 transition-colors hover:text-white"
+          >
+            <SlidersHorizontal size={16} />
+          </Link>
         </nav>
 
         {/* 모바일 토글 */}
@@ -94,6 +101,13 @@ const Header = ({ hiddenAnchors = [] }: { hiddenAnchors?: string[] }) => {
               {item.label}
             </Link>
           ))}
+          <Link
+            href="/customize"
+            className="block rounded-md px-2 py-3 text-sm font-medium text-white/90 hover:text-brand"
+            onClick={() => setOpen(false)}
+          >
+            히어로 이미지 편집
+          </Link>
         </nav>
       )}
     </header>

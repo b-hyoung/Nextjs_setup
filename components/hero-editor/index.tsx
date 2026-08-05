@@ -8,6 +8,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  Eraser,
   Plus,
   RotateCcw,
   X,
@@ -65,14 +66,24 @@ const HeroEditor = () => {
           <h1 className="text-base font-bold text-neutral-900">
             히어로 이미지 편집
           </h1>
-          <button
-            type="button"
-            onClick={resetHeroSlides}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-neutral-500 hover:text-neutral-900"
-          >
-            <RotateCcw size={14} />
-            기본값으로
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => writeHeroSlides([])}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-neutral-500 hover:text-neutral-900"
+            >
+              <Eraser size={14} />
+              전부 비우기
+            </button>
+            <button
+              type="button"
+              onClick={resetHeroSlides}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-neutral-500 hover:text-neutral-900"
+            >
+              <RotateCcw size={14} />
+              기본값으로
+            </button>
+          </div>
         </div>
       </header>
 
@@ -87,8 +98,9 @@ const HeroEditor = () => {
           </h2>
           {selected.length === 0 ? (
             <p className="mt-4 rounded-lg border border-dashed border-neutral-300 p-6 text-center text-sm text-neutral-500">
-              아래 라이브러리에서 이미지를 골라 넣어보세요. 비어 있으면 기본
-              구성으로 표시됩니다.
+              아래 라이브러리에서 이미지를 하나씩 골라 담아보세요. 비어 있는
+              동안 히어로는 어두운 배경만 표시됩니다. (기본 구성으로 돌아가려면
+              우측 상단 &ldquo;기본값으로&rdquo;)
             </p>
           ) : (
             <ul className="mt-4 flex gap-3 overflow-x-auto pb-2">
