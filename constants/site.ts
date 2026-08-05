@@ -164,7 +164,7 @@ export const BUSINESS_AREAS = [
       { src: "/images/gal-twin-2.webp", alt: "금선암 실제 부지 사진" },
       { src: "/images/biz-twin.webp", alt: "자연 환경 실시간 재구성" },
     ],
-    videos: [{ url: "https://youtu.be/vdkhWgUaMLo", label: "금선암 재구성 영상" }],
+    videos: [{ url: "https://youtu.be/vdkhWgUaMLo", label: "언리얼로 재현한 금선암" }],
   },
   {
     title: "몰입형 미디어아트 & 인터랙티브 전시",
