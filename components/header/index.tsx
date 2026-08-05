@@ -36,12 +36,12 @@ const Header = () => {
           onClick={() => setOpen(false)}
         >
           <Image
-            src="/images/logo-wide.png"
+            src="/images/logo-2026-wordmark.webp"
             alt={`${SITE.nameEn} 로고`}
-            width={170}
-            height={30}
+            width={1361}
+            height={118}
             priority
-            className="h-7 w-auto"
+            className="h-6 w-auto"
           />
         </Link>
 

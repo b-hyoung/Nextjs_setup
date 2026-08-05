@@ -9,12 +9,16 @@ const Footer = () => {
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
             <Image
-              src="/images/logo-wide.png"
+              src="/images/logo-2026-wordmark.webp"
               alt={`${SITE.nameEn} 로고`}
-              width={170}
-              height={30}
-              className="h-7 w-auto"
+              width={1361}
+              height={118}
+              className="h-6 w-auto"
             />
+            {/* 서브타이틀은 래스터 대신 텍스트로 — 작은 크기에서도 선명 */}
+            <p className="mt-2 text-[11px] font-medium tracking-[0.25em] text-white/50">
+              IMMERSIVE AI LABS
+            </p>
             <p className="mt-3 max-w-md text-sm leading-relaxed">
               {SITE.tagline}
             </p>

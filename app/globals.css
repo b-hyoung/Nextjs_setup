@@ -168,4 +168,19 @@
       transform: translateY(0);
     }
   }
+  /* 스크롤 마우스 휠 점 */
+  .scroll-wheel {
+    animation: wheel-drop 1.6s ease-in-out infinite;
+  }
+  @keyframes wheel-drop {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(10px);
+      opacity: 0.2;
+    }
+  }
 }
