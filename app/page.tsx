@@ -2,7 +2,6 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Hero from "@/components/sections/hero";
 import Slogan from "@/components/sections/slogan";
-import SignatureMarquee from "@/components/sections/signature-marquee";
 import Business from "@/components/sections/business";
 import Fields from "@/components/sections/fields";
 import History from "@/components/sections/history";
@@ -15,7 +14,6 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <SignatureMarquee />
         <Slogan />
         <Business />
         <Fields />
