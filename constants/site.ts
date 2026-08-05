@@ -59,7 +59,7 @@ export const IMAGE_LIBRARY = [
   { src: "/images/gal-mediaart-3.webp", label: "프로젝션 시연" },
   { src: "/images/biz-xredu.webp", label: "XR 체험 부스 렌더" },
   { src: "/images/gal-xredu-2.webp", label: "활쏘기 XR 게임" },
-  { src: "/images/gal-xredu-3.webp", label: "동물 상호작용 VR" },
+  { src: "/images/gal-xredu-3.webp", label: "역사 문서 XR 체험" },
   { src: "/images/biz-therapy.webp", label: "힐링 환경 렌더" },
   { src: "/images/gal-therapy-2.webp", label: "몰입형 명상" },
   { src: "/images/gal-therapy-3.webp", label: "한옥 호수 힐링" },
@@ -184,7 +184,7 @@ export const BUSINESS_AREAS = [
     images: [
       { src: "/images/biz-xredu.webp", alt: "XR 체험 부스 운영 현장" },
       { src: "/images/gal-xredu-2.webp", alt: "활쏘기 XR 학습 게임" },
-      { src: "/images/gal-xredu-3.webp", alt: "동물 상호작용 VR 콘텐츠" },
+      { src: "/images/gal-xredu-3.webp", alt: "역사 문서 XR 체험" },
     ],
     video: "https://youtu.be/fUOEKwBV6-U",
   },
