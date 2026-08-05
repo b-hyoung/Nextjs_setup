@@ -81,9 +81,11 @@ const Hero = () => {
           <br className="hidden sm:block" />
           <span className="sm:contents"> {SITE.descriptionLines[1]}</span>
         </p>
-        {/* 시그니처 — 브랜드 컬러 트래킹 캡스 (버넥트식) */}
-        <p className="mt-8 text-[11px] font-bold uppercase tracking-[0.35em] text-brand sm:text-xs md:mt-10">
-          {SITE.slogan}
+        {/* 시그니처 — 주황 하이라이트 박스 + 검정 트래킹 캡스 */}
+        <p className="mt-8 md:mt-10">
+          <span className="inline-block bg-brand px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.35em] text-neutral-950 [text-shadow:none] sm:text-xs">
+            {SITE.slogan}
+          </span>
         </p>
 
         {/* 모바일: 프레임 슬라이드쇼 — 가로 사진을 자르지 않고 보여준다 */}
