@@ -21,11 +21,10 @@ export const SITE = {
 } as const;
 
 export const NAV_ITEMS = [
-  { label: "사업분야", href: "#business" },
-  { label: "적용분야", href: "#fields" },
+  { label: "사업분야", href: "/#business" },
+  { label: "적용분야", href: "/#fields" },
   // 연혁은 프로젝트명 확정 후 노출 (HISTORY 데이터 채워지면 복원)
-  { label: "파트너", href: "#partners" },
-  { label: "문의하기", href: "#contact" },
+  { label: "파트너", href: "/#partners" },
 ] as const;
 
 /** 히어로 데모 영상 — 소개서 표지의 "Watch Demo Video" 링크 (slide3) */

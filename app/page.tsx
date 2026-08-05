@@ -6,7 +6,6 @@ import Business from "@/components/sections/business";
 import Fields from "@/components/sections/fields";
 import History from "@/components/sections/history";
 import Partners from "@/components/sections/partners";
-import Contact from "@/components/sections/contact";
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
         <Fields />
         <History />
         <Partners />
-        <Contact />
       </main>
       <Footer />
     </>

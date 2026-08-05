@@ -31,7 +31,7 @@ const Header = () => {
     >
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5">
         <Link
-          href="#top"
+          href="/"
           aria-label={`${SITE.name} 홈으로`}
           onClick={() => setOpen(false)}
           className="flex flex-col items-center gap-[3px]"
@@ -61,30 +61,26 @@ const Header = () => {
 
         {/* 데스크톱 내비게이션 */}
         <nav className="hidden items-center gap-1 md:flex">
-          {NAV_ITEMS.map((item) =>
-            item.label === "문의하기" ? (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="ml-2 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-hero transition-colors hover:bg-brand-strong hover:text-white"
-              >
-                {item.label}
-              </Link>
-            ) : (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                  solid
-                    ? "text-neutral-600 hover:text-neutral-900"
-                    : "text-white/80 hover:text-white",
-                )}
-              >
-                {item.label}
-              </Link>
-            ),
-          )}
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                solid
+                  ? "text-neutral-600 hover:text-neutral-900"
+                  : "text-white/80 hover:text-white",
+              )}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Link
+            href="/contact"
+            className="ml-2 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-hero transition-colors hover:bg-brand-strong hover:text-white"
+          >
+            문의하기
+          </Link>
           {/* 히어로 이미지 편집 진입 */}
           <Link
             href="/customize"
@@ -125,6 +121,13 @@ const Header = () => {
               {item.label}
             </Link>
           ))}
+          <Link
+            href="/contact"
+            className="block rounded-md px-2 py-3 text-sm font-medium text-neutral-700 hover:text-brand-strong"
+            onClick={() => setOpen(false)}
+          >
+            문의하기
+          </Link>
           <Link
             href="/customize"
             className="block rounded-md px-2 py-3 text-sm font-medium text-neutral-700 hover:text-brand-strong"
