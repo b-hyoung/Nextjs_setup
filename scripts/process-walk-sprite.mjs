@@ -11,6 +11,9 @@ import { mkdirSync } from "node:fs";
 import path from "node:path";
 
 const src = process.argv[2];
+const prefix = process.argv[3] ?? "walk";
+const COLS = Number(process.argv[4] ?? 4);
+const ROWS = Number(process.argv[5] ?? 2);
 if (!src) {
   console.error("사용법: node scripts/process-walk-sprite.mjs <스프라이트.png>");
   process.exit(1);
@@ -19,8 +22,8 @@ if (!src) {
 const OUT_DIR = path.join(import.meta.dirname, "..", "public", "images", "character");
 mkdirSync(OUT_DIR, { recursive: true });
 
-const COLS = 4;
-const ROWS = 2;
+
+
 
 // 주황 배경 크로마키 (RGB 거리 기준)
 const chromaKey = async (input) => {
@@ -48,6 +51,25 @@ const chromaKey = async (input) => {
   return sharp(data, { raw: info }).png().toBuffer();
 };
 
+// 알파 바운딩박스 계산 (실루엣 위치)
+const alphaBBox = async (buf) => {
+  const { data, info } = await sharp(buf)
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  let minX = info.width, maxX = -1, minY = info.height, maxY = -1;
+  for (let y = 0; y < info.height; y++) {
+    for (let x = 0; x < info.width; x++) {
+      if (data[(y * info.width + x) * 4 + 3] > 16) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  return { minX, maxX, minY, maxY };
+};
+
 const main = async () => {
   const keyed = await chromaKey(src);
   const meta = await sharp(keyed).metadata();
@@ -55,17 +77,53 @@ const main = async () => {
   const fh = Math.floor(meta.height / ROWS);
   console.log(`시트 ${meta.width}x${meta.height} → 프레임 ${fw}x${fh} x ${COLS * ROWS}`);
 
+  // 1패스: 프레임 추출 + 실루엣 바운딩박스
+  const frames = [];
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
-      const idx = row * COLS + col;
-      // 트림하지 않는다 — 프레임 박스를 동일하게 유지해야 위치가 안 흔들린다
-      const info = await sharp(keyed)
+      const buf = await sharp(keyed)
         .extract({ left: col * fw, top: row * fh, width: fw, height: fh })
-        .resize({ height: 480, fit: "inside", withoutEnlargement: true })
-        .webp({ quality: 88 })
-        .toFile(path.join(OUT_DIR, `walk-${idx}.webp`));
-      console.log(`walk-${idx}.webp ${info.width}x${info.height} ${Math.round(info.size / 1024)}KB`);
+        .png()
+        .toBuffer();
+      frames.push({ buf, bbox: await alphaBBox(buf) });
     }
+  }
+
+  // 2패스: 제자리 걷기 정렬 — 실루엣 가로중앙을 캔버스 중앙에, 발바닥을 공통 기준선에
+  const BASELINE = fh - 8; // 캔버스 하단에서 8px 위가 발바닥
+  for (let idx = 0; idx < frames.length; idx++) {
+    const { buf, bbox } = frames[idx];
+    const cx = (bbox.minX + bbox.maxX) / 2;
+    const shiftX = Math.round(fw / 2 - cx);
+    const shiftY = Math.round(BASELINE - bbox.maxY);
+    // 음수 시프트는 소스를 그만큼 잘라서 0 위치에 배치 (composite는 음수 오프셋 불가)
+    const srcLeft = Math.max(0, -shiftX);
+    const srcTop = Math.max(0, -shiftY);
+    const destLeft = Math.max(0, shiftX);
+    const destTop = Math.max(0, shiftY);
+    const cropped = await sharp(buf)
+      .extract({
+        left: srcLeft,
+        top: srcTop,
+        width: fw - Math.abs(shiftX),
+        height: fh - Math.abs(shiftY),
+      })
+      .png()
+      .toBuffer();
+    // composite와 resize는 별도 패스로 (sharp는 resize를 composite보다 먼저 적용)
+    const aligned = await sharp({
+      create: { width: fw, height: fh, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
+    })
+      .composite([{ input: cropped, left: destLeft, top: destTop }])
+      .png()
+      .toBuffer();
+    const info = await sharp(aligned)
+      .resize({ height: 480, fit: "inside", withoutEnlargement: true })
+      .webp({ quality: 88 })
+      .toFile(path.join(OUT_DIR, `${prefix}-${idx}.webp`));
+    console.log(
+      `${prefix}-${idx}.webp ${info.width}x${info.height} shift(${shiftX},${shiftY}) ${Math.round(info.size / 1024)}KB`,
+    );
   }
   console.log("완료 → public/images/character/");
 };
