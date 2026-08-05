@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState, useSyncExternalStore } from "react";
-import { SlidersHorizontal, X, RotateCcw } from "lucide-react";
+import { SlidersHorizontal, X, RotateCcw, Image as ImageIcon } from "lucide-react";
 import { SECTION_REGISTRY, type SectionId } from "@/constants/site";
 import { cn } from "@/lib/utils";
 import Header from "@/components/header";
@@ -141,7 +141,14 @@ const SiteCustomizer = () => {
           ))}
         </ul>
 
-        <div className="border-t border-white/10 p-4">
+        <div className="space-y-2.5 border-t border-white/10 p-4">
+          <a
+            href="/customize"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-brand py-2.5 text-sm font-bold text-hero transition-colors hover:bg-brand-strong hover:text-white"
+          >
+            <ImageIcon size={14} />
+            히어로 이미지 편집
+          </a>
           <button
             type="button"
             onClick={() => writeVisibility(defaultVisibility())}

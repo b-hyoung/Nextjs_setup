@@ -44,7 +44,47 @@ export const HERO_VIDEO = {
   posterAlt: "훈아티스 실시간 렌더링 데모 — 한옥과 설경",
 } as const;
 
-/** 히어로 배경 슬라이드 — 사람들이 직접 체험·플레이하는 현장 사진 나열 */
+/**
+ * 이미지 라이브러리 — PPTX에서 추출한 모든 콘텐츠 이미지.
+ * /customize 페이지에서 히어로 슬라이드로 골라 넣을 수 있는 전체 목록.
+ */
+export const IMAGE_LIBRARY = [
+  // 행사·체험 현장
+  { src: "/images/moments/hoonartis-booth.webp", label: "훈아티스 전시 부스" },
+  { src: "/images/moments/booth-demo.webp", label: "부스 콘텐츠 시연" },
+  { src: "/images/moments/expo-booth.webp", label: "넛다구리 체험 부스" },
+  { src: "/images/moments/dome-audience.webp", label: "몰입형 상영관 관람" },
+  { src: "/images/gal-training-3.webp", label: "전시 부스 플레이" },
+  { src: "/images/moments/media-install.webp", label: "원형 미디어아트 설치" },
+  { src: "/images/biz-training.webp", label: "메타키즈 교육 현장" },
+  { src: "/images/gal-training-2.webp", label: "강의실 실습" },
+  // 프로젝트 렌더·화면
+  { src: "/images/hero-poster.webp", label: "한옥 실시간 렌더" },
+  { src: "/images/biz-twin.webp", label: "디지털트윈 자연 환경" },
+  { src: "/images/gal-twin-2.webp", label: "사찰 실사 부지" },
+  { src: "/images/gal-twin-3.webp", label: "숲 환경 렌더" },
+  { src: "/images/biz-mediaart.webp", label: "인터랙티브 월" },
+  { src: "/images/gal-mediaart-2.webp", label: "라이트 인터랙티브 룸" },
+  { src: "/images/gal-mediaart-3.webp", label: "프로젝션 시연" },
+  { src: "/images/biz-xredu.webp", label: "XR 체험 부스 렌더" },
+  { src: "/images/gal-xredu-2.webp", label: "활쏘기 XR 게임" },
+  { src: "/images/gal-xredu-3.webp", label: "동물 상호작용 VR" },
+  { src: "/images/biz-therapy.webp", label: "힐링 환경 렌더" },
+  { src: "/images/gal-therapy-2.webp", label: "몰입형 명상" },
+  { src: "/images/gal-therapy-3.webp", label: "한옥 호수 힐링" },
+  { src: "/images/biz-device.webp", label: "센서·트래킹 장비" },
+  { src: "/images/gal-device-2.webp", label: "로봇팔 캐릭터 인터랙션" },
+  { src: "/images/gal-device-3.webp", label: "VR 인터랙션 게임" },
+  // 행사·협약 기록
+  { src: "/images/moments/award.webp", label: "공모전 수상" },
+  { src: "/images/moments/xr-alliance.webp", label: "XR·메타버스 얼라이언스" },
+  { src: "/images/moments/iksan-mou.webp", label: "익산 협약" },
+  { src: "/images/moments/jeonju-ict.webp", label: "전주 ICT 기업인" },
+  { src: "/images/moments/vietnam-forum.webp", label: "베트남 포럼 MOU" },
+  { src: "/images/moments/partnership.webp", label: "파트너십 협약" },
+] as const;
+
+/** 히어로 배경 슬라이드 — 사람들이 직접 체험·플레이하는 현장 사진 나열 (기본값) */
 export const HERO_SLIDES = [
   {
     src: "/images/moments/hoonartis-booth.webp",

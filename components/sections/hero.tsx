@@ -4,28 +4,26 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Play } from "lucide-react";
-import {
-  CHARACTER_STICKER,
-  HERO_SLIDES,
-  HERO_VIDEO,
-  SITE,
-} from "@/constants/site";
+import { CHARACTER_STICKER, HERO_VIDEO, SITE } from "@/constants/site";
+import { useHeroSlides } from "@/lib/hero-slides-store";
 import { cn } from "@/lib/utils";
 
 const SLIDE_MS = 2200;
 
 /** 히어로 — 체험·플레이 현장 사진이 빠른 컷으로 나열되는 풀스크린 구성 */
 const Hero = ({ showSticker = true }: { showSticker?: boolean }) => {
+  const slides = useHeroSlides();
   const [index, setIndex] = useState(0);
+  const safeIndex = index % slides.length;
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setInterval(
-      () => setIndex((i) => (i + 1) % HERO_SLIDES.length),
+      () => setIndex((i) => (i + 1) % slides.length),
       SLIDE_MS,
     );
     return () => clearInterval(t);
-  }, []);
+  }, [slides.length]);
 
   return (
     <section
@@ -33,7 +31,7 @@ const Hero = ({ showSticker = true }: { showSticker?: boolean }) => {
       className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-hero text-white"
     >
       {/* 배경 슬라이드 — PPTX에서 추출한 실제 작업물 */}
-      {HERO_SLIDES.map((slide, i) => (
+      {slides.map((slide, i) => (
         <Image
           key={slide.src}
           src={slide.src}
@@ -43,7 +41,7 @@ const Hero = ({ showSticker = true }: { showSticker?: boolean }) => {
           sizes="100vw"
           className={cn(
             "object-cover transition-opacity duration-300",
-            i === index ? "opacity-100" : "opacity-0",
+            i === safeIndex ? "opacity-100" : "opacity-0",
           )}
         />
       ))}
@@ -101,10 +99,10 @@ const Hero = ({ showSticker = true }: { showSticker?: boolean }) => {
       {/* 현재 슬라이드 캡션 + 인디케이터 */}
       <div className="absolute inset-x-0 bottom-8 flex flex-col items-center gap-3">
         <p className="text-xs font-medium text-white/70">
-          {HERO_SLIDES[index].caption}
+          {slides[safeIndex].caption}
         </p>
         <div className="flex gap-2">
-          {HERO_SLIDES.map((slide, i) => (
+          {slides.map((slide, i) => (
             <button
               key={slide.src}
               type="button"
@@ -112,7 +110,7 @@ const Hero = ({ showSticker = true }: { showSticker?: boolean }) => {
               onClick={() => setIndex(i)}
               className={cn(
                 "h-1 rounded-full transition-all",
-                i === index ? "w-8 bg-brand" : "w-4 bg-white/30",
+                i === safeIndex ? "w-8 bg-brand" : "w-4 bg-white/30",
               )}
             />
           ))}
