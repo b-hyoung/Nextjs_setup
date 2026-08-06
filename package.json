@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "next build && wrangler pages deploy out --project-name=hoonartis --branch=master"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.3.3",
@@ -32,6 +33,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.3.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "~5.9.3"
+    "typescript": "~5.9.3",
+    "wrangler": "^4.119.0"
   }
 }
