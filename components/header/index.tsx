@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, SlidersHorizontal } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { NAV_ITEMS, SITE } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
@@ -81,20 +81,7 @@ const Header = () => {
           >
             회사소개
           </Link>
-          {/* 히어로 이미지 편집 진입 */}
-          <Link
-            href="/customize"
-            aria-label="히어로 이미지 편집"
-            title="히어로 이미지 편집"
-            className={cn(
-              "ml-1 rounded-md p-2 transition-colors",
-              solid
-                ? "text-neutral-400 hover:text-neutral-900"
-                : "text-white/60 hover:text-white",
-            )}
-          >
-            <SlidersHorizontal size={16} />
-          </Link>
+          {/* 히어로 이미지 편집(/customize) 진입 — 기능은 유지, 네비게이션만 비노출 */}
         </nav>
 
         {/* 모바일 토글 */}
@@ -128,13 +115,7 @@ const Header = () => {
           >
             회사소개
           </Link>
-          <Link
-            href="/customize"
-            className="block rounded-md px-2 py-3 text-sm font-medium text-neutral-700 hover:text-brand-strong"
-            onClick={() => setOpen(false)}
-          >
-            히어로 이미지 편집
-          </Link>
+          {/* 히어로 이미지 편집(/customize) 진입 — 기능은 유지, 네비게이션만 비노출 */}
         </nav>
       )}
     </header>

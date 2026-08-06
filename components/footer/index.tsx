@@ -45,9 +45,15 @@ const Footer = () => {
             </div>
           </dl>
         </div>
-        <p className="mt-10 border-t border-white/10 pt-6 text-xs text-white/55">
-          © {new Date().getFullYear()} {SITE.nameEn}. All rights reserved.
-        </p>
+        {/* 사업자정보 + 저작권 — 대표자명은 회사소개 본문이 아닌 여기가 제자리 */}
+        <div className="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            {SITE.name}
+            <span className="px-2 text-white/25">|</span>
+            대표 {CONTACT.ceo}
+          </p>
+          <p>© {new Date().getFullYear()} {SITE.nameEn}. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   );

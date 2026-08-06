@@ -274,6 +274,7 @@ export const PARTNER_LOGOS = [
 
 /** 연락처 — §3.7 */
 export const CONTACT = {
+  ceo: "이훈주",
   address: "전북 전주시 덕진구 백제대로 816, 605호",
   addressEn: "605, 816 Baekje-daero, Deokjin-gu, Jeonju-si, Jeonbuk-do, Korea",
   tel: "0507-1402-5660",

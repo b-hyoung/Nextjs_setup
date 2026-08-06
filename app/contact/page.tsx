@@ -70,7 +70,7 @@ export default function ContactPage() {
                     <dt className="w-24 shrink-0 font-bold text-neutral-900">
                       대표
                     </dt>
-                    <dd className="font-medium text-neutral-700">이훈주</dd>
+                    <dd className="font-medium text-neutral-700">{CONTACT.ceo}</dd>
                   </div>
                   <div className="flex gap-6">
                     <dt className="w-24 shrink-0 font-bold text-neutral-900">
@@ -125,7 +125,10 @@ export default function ContactPage() {
             </div>
 
             {/* 지도 */}
-            <div className="mt-12 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100">
+            <h3 className="mt-14 text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-3xl">
+              오시는 길
+            </h3>
+            <div className="mt-5 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100">
               <iframe
                 title={`${SITE.name} 위치 지도`}
                 src={`https://maps.google.com/maps?q=${MAP_QUERY}&z=16&ie=UTF8&output=embed`}
