@@ -1,9 +1,9 @@
 /** Redux store 설정 파일 */
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, type UnknownAction } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { Environments } from '@/constants/enums';
 
-const exampleReducer = (state = {}, action: any) => {
+const exampleReducer = (state = {}, action: UnknownAction) => {
   switch (action.type) {
     case 'example/action':
       return { ...state, updated: true };
