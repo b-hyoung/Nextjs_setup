@@ -7,11 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-pretendard), "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  --font-heading: var(--font-paperlogy), var(--font-sans);
-  --color-brand: var(--brand);
-  --color-brand-strong: var(--brand-strong);
-  --color-hero: var(--hero);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -75,11 +73,6 @@
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  /* 훈아티스 브랜드 토큰: 액센트 1색(앰버) + 히어로 다크 (docs/REQUIREMENTS.md §5)
-     brand-strong은 화이트 배경 위 소형 텍스트용 — 4.5:1 대비 확보 레벨 */
-  --brand: oklch(0.75 0.16 65);
-  --brand-strong: oklch(0.53 0.14 55);
-  --hero: oklch(0.16 0.015 265);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -132,67 +125,6 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans scroll-smooth;
-    /* 한국어 조판: 단어 중간 줄바꿈 방지 */
-    word-break: keep-all;
-  }
-  /* 헤딩은 디스플레이 폰트가 목소리를 담당 */
-  h1,
-  h2,
-  h3 {
-    font-family: var(--font-heading);
-  }
-  /* 브라우저 기본 표면도 브랜드 팔레트로: 셀렉션·포커스 링 */
-  ::selection {
-    background: var(--brand);
-    color: var(--hero);
-  }
-  :focus-visible {
-    outline: 2px solid var(--brand-strong);
-    outline-offset: 2px;
-  }
-}
-
-/* 이미지 위 텍스트 가독성 (버넥트 방식: 섀도 + 국소 스크림) */
-.hero-text-guard {
-  text-shadow: 0 1px 3px rgb(0 0 0 / 0.65);
-}
-.hero-scrim {
-  background: radial-gradient(
-    ellipse 75% 65% at 50% 50%,
-    oklch(0.16 0.015 265 / 0.55),
-    transparent 72%
-  );
-}
-
-/* 히어로 1회성 등장 모션 — 유일하게 authored된 모션 */
-@media (prefers-reduced-motion: no-preference) {
-  .hero-enter {
-    animation: hero-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  @keyframes hero-rise {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  /* 스크롤 마우스 휠 점 */
-  .scroll-wheel {
-    animation: wheel-drop 1.6s ease-in-out infinite;
-  }
-  @keyframes wheel-drop {
-    0%,
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    50% {
-      transform: translateY(10px);
-      opacity: 0.2;
-    }
+    @apply font-sans;
   }
 }
